@@ -1,0 +1,64 @@
+/* Custom Styles for <I2P /> */
+:root {
+    --accent-orange: #d35400;
+    --bg-black: #050505;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+/* The Grid Background */
+.grid-bg {
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Typography Accents */
+.terminal-header::before {
+    content: "// ";
+    color: var(--accent-orange);
+}
+
+.terminal-sub::before {
+    content: "=> ";
+    color: var(--accent-orange);
+}
+
+.btn-bracket {
+    border: 1px solid var(--accent-orange);
+    padding: 10px 20px;
+    color: var(--accent-orange);
+    transition: all 0.3s ease;
+}
+
+.btn-bracket:hover {
+    background: var(--accent-orange);
+    color: white;
+}
+
+/* Card Styling */
+.service-card {
+    border: 1px solid #333;
+    background: #0a0a0a;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    border-color: var(--accent-orange);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 10s linear infinite;
+}
