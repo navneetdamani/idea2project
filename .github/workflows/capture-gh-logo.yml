@@ -1,0 +1,22 @@
+name: Capture G&H brand asset
+on:
+  push:
+    paths:
+      - .github/workflows/capture-gh-logo.yml
+permissions:
+  contents: write
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download published G&H header image
+        run: |
+          curl -fL --retry 3 https://www.gandhac.com/images/topimage.jpg -o demos/g-and-h/official-header.jpg
+          file demos/g-and-h/official-header.jpg
+          identify demos/g-and-h/official-header.jpg
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add demos/g-and-h/official-header.jpg
+          git commit -m "Add original G&H brand image"
+          git push
