@@ -1,4 +1,4 @@
-name: Capture G&H brand asset
+name: Prepare G&H brand assets
 on:
   push:
     paths:
@@ -10,12 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download published G&H header image
+      - name: Extract published G&H mark
         run: |
           curl -fL --retry 3 https://www.gandhac.com/images/topimage.jpg -o demos/g-and-h/official-header.jpg
-          file demos/g-and-h/official-header.jpg
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          folder=Path('demos/g-and-h')
+          source=Image.open(folder/'official-header.jpg').convert('RGB')
+          mark=source.crop((580,8,800,126))
+          mark.save(folder/'logo.png', optimize=True)
+          favicon=Image.new('RGB',(256,256),'white')
+          mark.thumbnail((242,170),Image.Resampling.LANCZOS)
+          favicon.paste(mark,((256-mark.width)//2,(256-mark.height)//2))
+          favicon.save(folder/'favicon.png', optimize=True)
+          print('Source:', source.size, 'Mark:', Image.open(folder/'logo.png').size)
+          PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add demos/g-and-h/official-header.jpg
-          git commit -m "Add original G&H brand image"
+          git add demos/g-and-h/logo.png demos/g-and-h/favicon.png
+          git commit -m "Add original G&H mark and favicon"
           git push
