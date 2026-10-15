@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: idea2project-update-portal
+    runtime: docker
+    plan: 0.5c-512mb
+    autoDeployTrigger: "off"
+    dockerfilePath: ./_update_portal/Dockerfile
+    dockerContext: ./_update_portal
+    healthCheckPath: /healthz
+    numInstances: 1
+    disk:
+      name: portal-private-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: DATA_DIR
+        value: /var/data
+      - key: AUTO_PUBLISH
+        value: "false"
+      - key: PORTAL_ORIGIN
+        sync: false
+      - key: ALLOWED_EMAILS
+        sync: false
+      - key: GITHUB_OAUTH_CLIENT_ID
+        sync: false
+      - key: GITHUB_OAUTH_CLIENT_SECRET
+        sync: false
+      - key: GITHUB_APP_ID
+        sync: false
+      - key: GITHUB_INSTALLATION_ID
+        sync: false
+      - key: GITHUB_APP_PRIVATE_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        sync: false
