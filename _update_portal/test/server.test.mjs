@@ -4,9 +4,9 @@ import { once } from 'node:events';
 import { Store, digest } from '../store.mjs';
 import { createServer,config,setupServer } from '../server.mjs';
 const c={origin:'https://portal.example',emails:['editor@example.com'],adminId:'owner',clientId:'client',clientSecret:'secret'};
-async function withServer(fn,transport) {
+async function withServer(fn,transport,overrides={}) {
   const s=new Store(':memory:'),g={main:async()=>'main',json:async path=>path==='/user'?{id:2,login:'editor'}:[{email:'editor@example.com',verified:true}]};
-  const w={paused:()=>false,pause:()=>{}},server=createServer(c,s,g,w,transport);
+  const w={paused:()=>false,pause:()=>{}},server=createServer({...c,...overrides},s,g,w,transport);
   server.listen(0,'127.0.0.1');await once(server,'listening');
   const base=`http://127.0.0.1:${server.address().port}`;
   const raw=await s.session('2','editor','editor@example.com'),csrf=s.db.prepare('SELECT csrf FROM sessions').get().csrf;
@@ -57,3 +57,18 @@ test('setup mode exposes no login or mutating routes',async()=>{
     assert.equal((await fetch(`${base}/api/requests`,{method:'POST',body:'{}'})).status,503);
   }finally{server.closeAllConnections();await new Promise(resolve=>server.close(resolve));}
 });
+test('administrator exports complete records without tokens; editors cannot export',()=>withServer(async({base,raw,s})=>{
+  const id=await s.submit('2','Keep this private request','private-export-key');
+  assert.equal((await fetch(`${base}/api/export`,{headers:{Cookie:`__Host-session=${raw}`}})).status,403);
+  const admin=await s.session('owner','owner','');
+  await s.run('INSERT INTO oauth VALUES(?,?,?)','private-hash','private-verifier',Date.now()+60000);
+  const response=await fetch(`${base}/api/export`,{headers:{Cookie:`__Host-session=${admin}`}});
+  assert.equal(response.status,200);const result=await response.json();
+  assert.equal(result.requests[0].id,id);assert.ok(result.audit.some(r=>r.event==='records-exported'));
+  assert.equal(result.sessions,undefined);assert.equal(result.oauth,undefined);
+  assert.ok(!JSON.stringify(result).includes('private-verifier'));assert.ok(!JSON.stringify(result).includes(admin));
+}));
+test('expired pilot rejects new requests',()=>withServer(async({base,raw,csrf,s})=>{
+  const response=await fetch(`${base}/api/requests`,{method:'POST',headers:{Cookie:`__Host-session=${raw}`,Origin:c.origin,'X-CSRF-Token':csrf,'Content-Type':'application/json','Idempotency-Key':'expired-pilot-key'},body:JSON.stringify({prompt:'Do not publish this change'})});
+  assert.equal(response.status,403);assert.equal((await s.list('2',false)).length,0);
+},undefined,{pilotEndsAt:Date.now()-1000}));
