@@ -12,12 +12,16 @@ export function config(env=process.env) {
   for (const name of required) if (!env[name]) throw Error(`Missing configuration: ${name}`);
   const origin = new URL(env.PORTAL_ORIGIN);
   if (origin.protocol!=='https:' || origin.origin!==env.PORTAL_ORIGIN) throw Error('PORTAL_ORIGIN must be an HTTPS origin');
+  const pilotEndsAt=env.PILOT_ENDS_AT ? Date.parse(env.PILOT_ENDS_AT) : null;
+  if(env.PILOT_ENDS_AT && !Number.isFinite(pilotEndsAt))throw Error('Invalid pilot expiration');
+  if(env.RENDER==='true' && (!env.DATABASE_URL || !pilotEndsAt))throw Error('Hosted pilot requires PostgreSQL and an expiration');
   const emails=env.ALLOWED_EMAILS.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);
   if (!emails.length || emails.some(s=>!s.includes('@'))) throw Error('Configure allowed emails');
   return {origin:origin.origin,emails,adminId:'258078742',clientId:env.GITHUB_OAUTH_CLIENT_ID,
     clientSecret:env.GITHUB_OAUTH_CLIENT_SECRET,appId:env.GITHUB_APP_ID,installationId:env.GITHUB_INSTALLATION_ID,
     appKey:env.GITHUB_APP_PRIVATE_KEY.replaceAll('\\n','\n'),openaiKey:env.OPENAI_API_KEY,model:env.OPENAI_MODEL,
-    autoPublish:env.AUTO_PUBLISH==='true',port:Number(env.PORT || 10000),dataDir:env.DATA_DIR || '/var/data'};
+    autoPublish:env.AUTO_PUBLISH==='true',port:Number(env.PORT || 10000),dataDir:env.DATA_DIR || '/var/data',
+    databaseUrl:env.DATABASE_URL,pilotEndsAt};
 }
 const fail = (status,message) => { throw Object.assign(Error(message),{status}); };
 function cookie(req,name) { return req.headers.cookie?.split(';').map(s=>s.trim()).find(s=>s.startsWith(`${name}=`))?.slice(name.length+1) || ''; }
@@ -47,10 +51,10 @@ export function createServer(c,s,g,worker,transport=fetch) {
         return res.end(publicFiles.get(path));
       }
       if (req.method==='GET' && path==='/auth/login') {
-        s.limit(`login:${req.socket.remoteAddress}`,120,60000);
+        await s.limit(`login:${req.socket.remoteAddress}`,120,60000);
         const state=token(),verifier=token();
-        s.db.prepare('DELETE FROM oauth WHERE expires < ?').run(Date.now());
-        s.db.prepare('INSERT INTO oauth VALUES(?,?,?)').run(digest(state),verifier,Date.now()+600000);
+        await s.run('DELETE FROM oauth WHERE expires < ?',Date.now());
+        await s.run('INSERT INTO oauth VALUES(?,?,?)',digest(state),verifier,Date.now()+600000);
         const auth=new URL('https://github.com/login/oauth/authorize');
         auth.search=new URLSearchParams({client_id:c.clientId,redirect_uri:`${c.origin}/auth/callback`,scope:'user:email',state,
           code_challenge:createHash('sha256').update(verifier).digest('base64url'),code_challenge_method:'S256'});
@@ -59,7 +63,7 @@ export function createServer(c,s,g,worker,transport=fetch) {
       if (req.method==='GET' && path==='/auth/callback') {
         const state=url.searchParams.get('state'),code=url.searchParams.get('code');
         if (!state || !code || code.length>512 || !same(state,cookie(req,'__Host-oauth'))) fail(403,'Invalid login state');
-        const pending=s.db.prepare('DELETE FROM oauth WHERE hash=? AND expires>? RETURNING verifier').get(digest(state),Date.now());
+        const pending=await s.one('DELETE FROM oauth WHERE hash=? AND expires>? RETURNING verifier',digest(state),Date.now());
         if(!pending) fail(403,'Login expired or already used');
         const exchange=await transport('https://github.com/login/oauth/access_token',{
           method:'POST',headers:{Accept:'application/json','Content-Type':'application/json'},signal:AbortSignal.timeout(15000),
@@ -70,56 +74,60 @@ export function createServer(c,s,g,worker,transport=fetch) {
         const emails=await g.json('/user/emails','GET',undefined,auth.access_token);
         const email=emails.find(e=>e.verified && c.emails.includes(e.email.toLowerCase()))?.email.toLowerCase() || '';
         const uid=String(profile.id);
-        if(uid!==c.adminId && !email) { s.audit(uid,'','access-denied'); fail(403,'This account is not authorized'); }
-        const session=s.session(uid,profile.login,email);
+        if(uid!==c.adminId && !email) { await s.audit(uid,'','access-denied'); fail(403,'This account is not authorized'); }
+        const session=await s.session(uid,profile.login,email);
         res.setHeader('Set-Cookie',[`__Host-session=${session}; Path=/; Secure; HttpOnly; SameSite=Lax; Max-Age=28800`,
           '__Host-oauth=; Path=/; Secure; HttpOnly; SameSite=Lax; Max-Age=0']);
         return redirect('/');
       }
-      const user=s.db.prepare('SELECT * FROM sessions WHERE hash=? AND expires>?').get(digest(cookie(req,'__Host-session')),Date.now());
+      const user=await s.one('SELECT * FROM sessions WHERE hash=? AND expires>?',digest(cookie(req,'__Host-session')),Date.now());
       if(!user || user.uid!==c.adminId && !c.emails.includes(user.email)) fail(401,'Sign in to continue');
       const admin=user.uid===c.adminId;
-      s.limit(`api:${user.uid}`,120,60000);
+      await s.limit(`api:${user.uid}`,120,60000);
       if(req.method!=='GET') {
         if(req.headers.origin!==c.origin || !same(req.headers['x-csrf-token'],user.csrf)) fail(403,'Invalid request origin or token');
       }
-      if(req.method==='GET' && path==='/api/me') return json(200,{login:user.login,csrf:user.csrf,admin,autoPublish:c.autoPublish,paused:worker.paused()});
+      if(req.method==='GET' && path==='/api/me') return json(200,{login:user.login,csrf:user.csrf,admin,autoPublish:c.autoPublish,paused:await worker.paused(),pilotEndsAt:c.pilotEndsAt});
       if(req.method==='POST' && path==='/auth/logout') {
-        s.db.prepare('DELETE FROM sessions WHERE hash=?').run(user.hash);s.audit(user.uid,'','logout');
+        await s.run('DELETE FROM sessions WHERE hash=?',user.hash);await s.audit(user.uid,'','logout');
         res.setHeader('Set-Cookie','__Host-session=; Path=/; Secure; HttpOnly; SameSite=Lax; Max-Age=0');return json(200,{ok:true});
       }
-      if(req.method==='GET' && path==='/api/requests') return json(200,s.list(user.uid,admin));
+      if(req.method==='GET' && path==='/api/requests') return json(200,await s.list(user.uid,admin));
       if(req.method==='POST' && path==='/api/requests') {
+        if(c.pilotEndsAt && Date.now()>=c.pilotEndsAt)fail(403,'Pilot expired. Export records and contact the administrator.');
         const input=await body(req),key=req.headers['idempotency-key'];
         if(typeof input.prompt!=='string' || input.prompt.trim().length<10 || input.prompt.length>4000 || /\x00/.test(input.prompt)) fail(400,'Describe a change in 10–4000 characters');
         if(typeof key!=='string' || !/^[a-zA-Z0-9-]{16,64}$/.test(key)) fail(400,'Idempotency key required');
-        return json(202,{id:s.submit(user.uid,input.prompt.trim(),key)});
+        return json(202,{id:await s.submit(user.uid,input.prompt.trim(),key)});
       }
       if(req.method==='GET' && path==='/api/audit') {
         if(!admin) fail(403,'Administrator access required');
-        return json(200,s.db.prepare('SELECT * FROM audit ORDER BY seq DESC LIMIT 500').all());
+        return json(200,await s.all('SELECT * FROM audit ORDER BY seq DESC LIMIT 500'));
+      }
+      if(req.method==='GET' && path==='/api/export') {
+        if(!admin)fail(403,'Administrator access required');
+        const snapshot=await s.transaction(async()=>{
+          await s.verifyAudit();await s.audit(user.uid,'','records-exported');
+          return {version:1,exportedAt:new Date().toISOString(),requests:await s.all('SELECT * FROM requests ORDER BY created,id'),
+            audit:await s.all('SELECT * FROM audit ORDER BY seq'),settings:await s.all('SELECT * FROM settings')};
+        });
+        return json(200,snapshot);
       }
       if(req.method==='POST' && path==='/api/pause') {
         if(!admin) fail(403,'Administrator access required');
         const input=await body(req);if(typeof input.paused!=='boolean') fail(400,'paused must be boolean');
-        s.db.prepare("INSERT INTO settings VALUES('paused',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value").run(String(input.paused));
-        s.audit(user.uid,'',input.paused?'publishing-paused':'publishing-resumed');return json(200,{ok:true});
+        await s.run("INSERT INTO settings VALUES('paused',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value",String(input.paused));
+        await s.audit(user.uid,'',input.paused?'publishing-paused':'publishing-resumed');return json(200,{ok:true});
       }
       const rollback=path.match(/^\/api\/requests\/([a-f0-9-]{36})\/rollback$/);
       if(req.method==='POST' && rollback) {
         if(!admin) fail(403,'Administrator access required');
         await body(req);
-        const target=s.get(rollback[1]);
+        if(c.pilotEndsAt && Date.now()>=c.pilotEndsAt)fail(403,'Pilot expired');
+        const target=await s.get(rollback[1]);
         if(!target || !['deployed','deployment-failed'].includes(target.status) || target.data.rollbackOf) fail(409,'Request is not eligible for rollback');
         if(await g.main()!==target.data.merged) fail(409,'Main advanced; manual revert required');
-        const id=s.transaction(()=>{
-          s.limit(`rollback:${user.uid}`,3,3600000);
-          if(s.db.prepare("SELECT id FROM requests WHERE status IN ('planning','checking','deploying','queued-rollback')").get()) fail(409,'Another change is active');
-          const id=randomUUID();
-          s.db.prepare('INSERT INTO requests(id,uid,prompt,created,status,data,idempotency) VALUES(?,?,?,?,?,?,?)')
-            .run(id,user.uid,'Administrator rollback',Date.now(),'queued-rollback',JSON.stringify({rollbackOf:target.id}),`rollback-${target.id}`);
-          worker.pause();s.audit(user.uid,id,'rollback-requested',{target:target.id});return id;
-        });
+        const id=await s.rollback(user.uid,target.id);
         return json(202,{id});
       }
       fail(404,'Not found');
@@ -131,16 +139,32 @@ export function createServer(c,s,g,worker,transport=fetch) {
     }
   });
 }
-if(process.argv[1]===fileURLToPath(import.meta.url)) {
-  const c=config();mkdirSync(c.dataDir,{recursive:true,mode:0o700});
-  const s=new Store(`${c.dataDir}/portal.sqlite`),g=new GitHub(c),w=new Worker(c,s,g);
-  w.recover();
+export function setupServer(port) {
+  const css=readFileSync(new URL('./public/style.css',import.meta.url));
+  const server=http.createServer((req,res)=>{
+    res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');
+    res.setHeader('Content-Security-Policy',"default-src 'none'; style-src 'self'; base-uri 'none'; frame-ancestors 'none'");
+    if(req.url==='/healthz'){res.writeHead(200,{'Content-Type':'application/json'});return res.end('{"ok":true,"mode":"setup"}');}
+    if(req.method==='GET' && req.url==='/style.css'){res.writeHead(200,{'Content-Type':'text/css'});return res.end(css);}
+    if(req.method==='GET' && req.url==='/'){res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});return res.end('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Portal setup · Idea 2 Project</title><link rel="stylesheet" href="/style.css"></head><body><main><div class="eyebrow">IDEA 2 PROJECT · FREE PILOT</div><h1>Your update workspace<br><em>is being configured.</em></h1><section class="panel"><h2>Administrator setup in progress</h2><p>Sign-in, update requests and automatic publishing are disabled until the secure account connections are configured.</p><p>Your public website continues to run on GitHub Pages.</p></section></main></body></html>');}
+    res.writeHead(503,{'Content-Type':'application/json'});res.end('{"error":"Administrator setup is incomplete"}');
+  });
+  return server.listen(port,'0.0.0.0');
+}
+if(process.argv[1]===fileURLToPath(import.meta.url) && process.env.SETUP_MODE==='true') {
+  setupServer(Number(process.env.PORT || 10000));console.log('Setup mode: login and publishing disabled');
+} else if(process.argv[1]===fileURLToPath(import.meta.url)) {
+  try {
+  const c=config();
+  let s;if(c.databaseUrl)s=await Store.postgres(c.databaseUrl);else{mkdirSync(c.dataDir,{recursive:true,mode:0o700});s=new Store(`${c.dataDir}/portal.sqlite`);}
+  const g=new GitHub(c),w=new Worker(c,s,g);await w.recover();
   const server=createServer(c,s,g,w);
   server.requestTimeout=20000;server.headersTimeout=10000;
   server.listen(c.port,'0.0.0.0',()=>console.log('Portal ready'));
   const timer=setInterval(()=>w.tick().catch(()=>console.error('Worker failed safely')),15000);
   for(const signal of ['SIGTERM','SIGINT']) process.on(signal,()=>{
-    clearInterval(timer);server.close(()=>{s.close();process.exit(0);});
+    clearInterval(timer);server.close(async()=>{await s.close();process.exit(0);});
     setTimeout(()=>process.exit(0),10000).unref();
   });
+  }catch{console.error('Portal startup failed; verify private configuration and database access');process.exitCode=1;}
 }

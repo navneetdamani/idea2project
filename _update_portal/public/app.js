@@ -30,6 +30,7 @@ async function refresh(){
 async function start(){
   try{me=await api('/api/me');$('workspace').hidden=false;$('logout').hidden=false;$('admin').hidden=!me.admin;
     $('publishing').textContent=!me.autoPublish?'Publishing is awaiting administrator activation.':me.paused?'Publishing is paused.':'Automatic publishing is active. All checks must pass.';
+    if(me.pilotEndsAt)$('publishing').textContent+=` Free pilot processing ends ${new Date(me.pilotEndsAt).toLocaleString()}. Export records before database expiry.`;
     await refresh();
   }catch(e){$('login').hidden=false;}
 }
@@ -40,4 +41,5 @@ $('logout').onclick=async()=>{try{await api('/auth/logout','POST',{});location.r
 $('refresh').onclick=()=>refresh().catch(e=>message(e.message));
 for(const [id,paused]of [['pause',true],['resume',false]])$(id).onclick=async()=>{try{await api('/api/pause','POST',{paused});$('publishing').textContent=paused?'Publishing is paused.':'Publishing is resumed, subject to deployment configuration.';message('Publishing preference saved.');}catch(e){message(e.message);}};
 $('audit').onclick=async()=>{try{const rows=await api('/api/audit');const url=URL.createObjectURL(new Blob([JSON.stringify(rows,null,2)],{type:'application/json'}));const a=node('a','');a.href=url;a.download='portal-audit.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){message(e.message);}};
+$('export').onclick=async()=>{try{const snapshot=await api('/api/export');const url=URL.createObjectURL(new Blob([JSON.stringify(snapshot,null,2)],{type:'application/json'}));const a=node('a','');a.href=url;a.download='portal-private-records.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){message(e.message);}};
 start();setInterval(()=>{if(me&&!document.hidden)refresh().catch(e=>message(e.message));},15000);

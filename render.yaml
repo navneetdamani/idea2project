@@ -2,19 +2,22 @@ services:
   - type: web
     name: idea2project-update-portal
     runtime: docker
-    plan: 0.5c-512mb
+    plan: free
+    region: oregon
     autoDeployTrigger: "off"
     dockerfilePath: ./_update_portal/Dockerfile
     dockerContext: ./_update_portal
     healthCheckPath: /healthz
     numInstances: 1
-    disk:
-      name: portal-private-data
-      mountPath: /var/data
-      sizeGB: 1
     envVars:
-      - key: DATA_DIR
-        value: /var/data
+      - key: DATABASE_URL
+        fromDatabase:
+          name: idea2project-portal-pilot-db
+          property: connectionString
+      - key: SETUP_MODE
+        value: "true"
+      - key: PILOT_ENDS_AT
+        sync: false
       - key: AUTO_PUBLISH
         value: "false"
       - key: PORTAL_ORIGIN
@@ -35,3 +38,9 @@ services:
         sync: false
       - key: OPENAI_MODEL
         sync: false
+databases:
+  - name: idea2project-portal-pilot-db
+    plan: free
+    region: oregon
+    postgresMajorVersion: "17"
+    ipAllowList: []

@@ -2,15 +2,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { once } from 'node:events';
 import { Store, digest } from '../store.mjs';
-import { createServer,config } from '../server.mjs';
+import { createServer,config,setupServer } from '../server.mjs';
 const c={origin:'https://portal.example',emails:['editor@example.com'],adminId:'owner',clientId:'client',clientSecret:'secret'};
 async function withServer(fn,transport) {
   const s=new Store(':memory:'),g={main:async()=>'main',json:async path=>path==='/user'?{id:2,login:'editor'}:[{email:'editor@example.com',verified:true}]};
   const w={paused:()=>false,pause:()=>{}},server=createServer(c,s,g,w,transport);
   server.listen(0,'127.0.0.1');await once(server,'listening');
   const base=`http://127.0.0.1:${server.address().port}`;
-  const raw=s.session('2','editor','editor@example.com'),csrf=s.db.prepare('SELECT csrf FROM sessions').get().csrf;
-  try{await fn({s,g,base,raw,csrf});}finally{server.closeAllConnections();await new Promise(resolve=>server.close(resolve));s.close();}
+  const raw=await s.session('2','editor','editor@example.com'),csrf=s.db.prepare('SELECT csrf FROM sessions').get().csrf;
+  try{await fn({s,g,base,raw,csrf});}finally{server.closeAllConnections();await new Promise(resolve=>server.close(resolve));await s.close();}
 }
 test('anonymous access denied; UI has security headers',()=>withServer(async({base})=>{
   assert.equal((await fetch(`${base}/api/requests`)).status,401);
@@ -22,12 +22,12 @@ test('origin and CSRF enforced; submissions idempotent; editor cannot administer
   const headers={...h,Origin:c.origin,'X-CSRF-Token':csrf};
   const first=await fetch(`${base}/api/requests`,{method:'POST',headers,body:payload});assert.equal(first.status,202);
   const second=await fetch(`${base}/api/requests`,{method:'POST',headers,body:payload});assert.deepEqual(await first.json(),await second.json());
-  assert.equal(s.list('2',false).length,1);
+  assert.equal((await s.list('2',false)).length,1);
   assert.equal((await fetch(`${base}/api/pause`,{method:'POST',headers,body:'{"paused":true}'})).status,403);
   assert.equal((await fetch(`${base}/api/audit`,{headers:h})).status,403);
 }));
 test('removed email invalidates session; other users cannot see requests',()=>withServer(async({base,raw,s})=>{
-  s.submit('other','Another private request','private-key-000001');
+  await s.submit('other','Another private request','private-key-000001');
   const response=await fetch(`${base}/api/requests`,{headers:{Cookie:`__Host-session=${raw}`}});assert.deepEqual(await response.json(),[]);
   s.db.prepare('UPDATE sessions SET email=?').run('revoked@example.com');
   assert.equal((await fetch(`${base}/api/me`,{headers:{Cookie:`__Host-session=${raw}`}})).status,401);
@@ -47,3 +47,13 @@ test('unverified allowed email is rejected',()=>withServer(async({base,g})=>{
   assert.equal((await fetch(`${base}/auth/callback?state=${state}&code=test`,{headers:{Cookie:`__Host-oauth=${state}`},redirect:'manual'})).status,403);
 },async()=>({ok:true,json:async()=>({access_token:'test-access-token'})})));
 test('startup fails closed without configuration',()=>assert.throws(()=>config({}),/Missing configuration/));
+test('setup mode exposes no login or mutating routes',async()=>{
+  const server=setupServer(0);await once(server,'listening');
+  const base=`http://127.0.0.1:${server.address().port}`;
+  try{
+    assert.match(await(await fetch(base)).text(),/Administrator setup in progress/);
+    assert.deepEqual(await(await fetch(`${base}/healthz`)).json(),{ok:true,mode:'setup'});
+    for(const path of ['/auth/login','/api/requests','/api/audit'])assert.equal((await fetch(`${base}${path}`)).status,503);
+    assert.equal((await fetch(`${base}/api/requests`,{method:'POST',body:'{}'})).status,503);
+  }finally{server.closeAllConnections();await new Promise(resolve=>server.close(resolve));}
+});
