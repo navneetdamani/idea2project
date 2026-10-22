@@ -11,4 +11,29 @@ jobs:
         with:
           node-version: '22'
       - run: node tests/recruitment.cjs
+      - run: node tests/candidate.cjs
       - run: git diff --check
+  backend-policies:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_PASSWORD: disposable-test-only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PGPASSWORD: disposable-test-only
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify candidate and CV access policies in disposable PostgreSQL
+        run: >-
+          psql -h localhost -U postgres -v ON_ERROR_STOP=1
+          -f tests/backend-bootstrap.sql
+          -f supabase/migrations/202610220001_candidate_portal.sql
+          -f tests/backend-policies.sql

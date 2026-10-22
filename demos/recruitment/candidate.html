@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex"><meta name="referrer" content="no-referrer">
+  <title>Candidate account | TalentFlow · Idea 2 Project</title>
+  <link rel="stylesheet" href="portal.css">
+</head>
+<body>
+  <header class="brandbar"><div class="wrap"><a class="brand" href="../../">IDEA <b>2</b> PROJECT</a><nav class="brandlinks" aria-label="Main navigation"><a href="./">Job portal & workflow demo</a><a href="../../contact.html">Contact us ↗</a></nav></div></header>
+  <section class="intro"><div class="wrap"><div class="eyebrow">TalentFlow / Candidate account</div><h1>Your next opportunity.<br><span>One profile, kept current.</span></h1><p>Create your account, tell us about your experience, and keep your latest CV ready for the Idea 2 Project recruiting team.</p></div></section>
+  <main class="wrap account-main">
+    <noscript><p class="notice">JavaScript is needed to sign in and manage your candidate profile.</p></noscript>
+    <div id="setup-notice" class="notice">Candidate accounts are being connected. Registration and CV uploads are not available yet; no information can be submitted from this form.</div>
+    <div id="status" role="status" aria-live="polite" class="status" hidden></div>
+    <div id="auth-area" class="account-grid">
+      <section class="card account-card">
+        <div class="auth-tabs" role="tablist" aria-label="Account options"><button id="login-tab" type="button" role="tab" aria-selected="true" aria-controls="auth-panel" data-mode="login">Sign in</button><button id="signup-tab" type="button" role="tab" aria-selected="false" aria-controls="auth-panel" data-mode="signup">Create account</button></div>
+        <div id="auth-panel" role="tabpanel" aria-labelledby="login-tab">
+          <h2 id="auth-title">Welcome back.</h2><p class="muted" id="auth-description">Sign in to update your profile and latest CV.</p>
+          <form id="auth-form"><fieldset id="auth-fields" disabled>
+            <div id="signup-name-field" hidden><label for="signup-name">Full name</label><input id="signup-name" name="name" maxlength="120" autocomplete="name"></div>
+            <label for="auth-email">Email address</label><input id="auth-email" name="email" type="email" required autocomplete="email" maxlength="254">
+            <div id="password-field"><label for="auth-password">Password</label><input id="auth-password" name="password" type="password" required minlength="12" maxlength="128" autocomplete="current-password"><p class="tiny muted">Use at least 12 characters.</p></div>
+            <div class="actions"><button class="primary" type="submit" id="auth-submit">Sign in →</button></div>
+          </fieldset></form>
+          <p class="auth-link"><button type="button" id="forgot-password" disabled>Forgot password?</button></p>
+        </div>
+      </section>
+      <aside class="card account-card"><span class="section-label">Your candidate workspace</span><h2>A clearer introduction.</h2><ul class="feature-list"><li><strong>Your account.</strong> Email verification and secure sign-in.</li><li><strong>Your profile.</strong> Skills, experience, location, and the work you want to do.</li><li><strong>Your latest CV.</strong> A private PDF, up to 5 MB. A new upload replaces the previous version.</li></ul><p class="tiny muted">Profiles and CVs are accessible to you and authorized Idea 2 Project recruiters. They are not public job-board listings.</p><p class="tiny muted">The separate workflow demo uses fictional browser-local records. It does not receive your account details or CV.</p></aside>
+    </div>
+    <section id="recovery-area" class="card account-card" hidden><h2>Choose a new password.</h2><form id="recovery-form"><label for="new-password">New password</label><input id="new-password" type="password" minlength="12" maxlength="128" autocomplete="new-password" required><div class="actions"><button class="primary">Update password</button></div></form></section>
+    <section id="profile-area" hidden>
+      <div class="account-heading"><div><div class="section-label">Candidate workspace</div><h2>My profile</h2><p id="account-email" class="muted"></p></div><button type="button" id="sign-out">Sign out</button></div>
+      <div class="account-grid">
+        <section class="card account-card"><h2>Make your experience visible.</h2><p class="muted">Keep your details current for the recruiting team.</p>
+          <form id="profile-form"><fieldset id="profile-fields"><div class="form-grid">
+            <div class="full"><label for="full-name">Full name *</label><input id="full-name" required maxlength="120" autocomplete="name"></div>
+            <div class="full"><label for="headline">Professional headline</label><input id="headline" maxlength="200" placeholder="e.g. SAP PS Consultant · S/4HANA delivery"></div>
+            <div><label for="profile-location">Location</label><input id="profile-location" maxlength="120" autocomplete="address-level2"></div>
+            <div><label for="phone">Phone (optional)</label><input id="phone" type="tel" maxlength="40" autocomplete="tel"></div>
+            <div><label for="experience-years">Years of experience *</label><input id="experience-years" type="number" min="0" max="80" step="0.1" required></div>
+            <div class="full"><label for="profile-skills">Skills, separated by commas *</label><input id="profile-skills" required maxlength="1829" placeholder="SAP PS, S/4HANA, FI/CO"></div>
+            <div class="full"><label for="summary">Experience summary</label><textarea id="summary" maxlength="4000" placeholder="Tell us about your relevant projects, responsibilities, and achievements."></textarea></div>
+            <div class="full"><label class="check-label"><input id="profile-consent" type="checkbox" required><span>I allow Idea 2 Project to store my profile and CV and make them available to authorized recruiters for recruitment. I can remove them from this workspace.</span></label></div>
+          </div><div class="actions"><button class="primary" type="submit">Save profile →</button></div></fieldset></form>
+        </section>
+        <div><section class="card account-card"><span class="section-label">Latest version</span><h2>My CV</h2><p class="muted">Upload a PDF up to 5 MB. A successful upload replaces your previous CV.</p><p id="cv-status" class="cv-status">Save your profile before uploading a CV.</p>
+          <form id="cv-form"><fieldset id="cv-fields" disabled><label for="cv-file">Select your latest CV</label><input class="cv-input" id="cv-file" type="file" accept=".pdf,application/pdf" required><div class="actions"><button type="submit" class="primary">Upload latest CV ↑</button><button type="button" id="download-cv" disabled>Download CV</button><button type="button" id="remove-cv" disabled>Remove CV</button></div></fieldset></form>
+          <p class="tiny muted">Your CV is stored privately, outside the public website. Upload only your own CV; omit identity documents and financial information.</p>
+        </section><section class="card account-card"><h3>Your information, your control.</h3><p class="tiny muted">Removing your profile also removes your current CV. This keeps your login account so you can return later. For account closure or data questions, contact <a href="mailto:info@idea2proj.com">info@idea2proj.com</a>.</p><div class="profile-actions"><button type="button" class="danger" id="remove-profile">Remove my profile & CV</button></div></section></div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap"><a class="brand" href="../../">IDEA <b>2</b> PROJECT</a><span>Specialists who accelerate delivery.</span><a href="./">Explore the recruitment demo ↗</a></div></footer>
+  <script src="config.js"></script><script src="candidate-core.js"></script><script src="vendor/supabase-2.118.0.js"></script><script src="candidate.js"></script>
+</body></html>
