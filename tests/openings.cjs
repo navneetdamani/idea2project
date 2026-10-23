@@ -1,0 +1,15 @@
+const fs = require('node:fs');
+const vm = require('node:vm');
+const assert = require('node:assert/strict');
+const path = require('node:path');
+const source = fs.readFileSync(path.join(__dirname, '../demos/recruitment/openings.js'), 'utf8');
+const target = {innerHTML: ''};
+const context = vm.createContext({document: {getElementById: () => target}, encodeURIComponent});
+vm.runInContext(source, context);
+assert.equal((target.innerHTML.match(/<article /g) || []).length, 5);
+assert.equal((target.innerHTML.match(/href="mailto:info@idea2proj.com\?subject=/g) || []).length, 5);
+assert.doesNotMatch(target.innerHTML, /deloitte|DLTJP|INR|bill rate|zoom\.us|Process Mining/i);
+vm.runInContext('currentOpenings[0].title = "<img src=x onerror=alert(1)>"; renderCurrentOpenings()', context);
+assert.doesNotMatch(target.innerHTML, /<img/);
+assert.match(target.innerHTML, /&lt;img/);
+console.log('PASS: five shared listings, enquiry links, public-copy exclusions and HTML escaping');
