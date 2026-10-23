@@ -19,3 +19,7 @@ Run `node tests/recruitment.cjs` and `node tests/candidate.cjs` from the reposit
 The existing site is hosted by GitHub Pages. Merge the reviewed recruitment change into the existing publishing branch; do not replace the root site or CNAME. This demo needs no API keys, build step, paid service or backend.
 
 The Supabase candidate integration is implemented but not connected by default. Do not claim live registration or storage before configuration and real-project acceptance tests. A live recruiter dashboard, persistent job applications, resume processing, notifications and AI screening are separate future integrations. The demo publication checkbox models a workflow; it does not provide confidentiality enforcement.
+
+## Current opportunities
+
+Shared listings render from openings.js independently of browser-local demo data. Public summaries were reviewed against the 23 October 2026 emails and attached JDs: two ServiceNow HRSD positions, two UKG specialties (headcount unconfirmed), and SAP FSCM. Email enquiry links open the visitor's email app. Online applications are not connected. Closed Process Mining and incomplete calibration notices are excluded. Source emails, attachments, vendor rates and contacts are not committed. Update availability manually. Check with node tests/openings.cjs.
