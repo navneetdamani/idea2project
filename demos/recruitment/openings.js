@@ -33,15 +33,14 @@ const currentOpenings = [
     location: 'To be confirmed', experience: 'Experience requirement to be confirmed',
     summary: 'Urgent backfill opportunity for a resource with SAP FSCM expertise across collections, disputes and credit management who is ready for deployment.',
     skills: ['SAP FSCM', 'Collections management', 'Dispute management', 'Credit management'],
-    detail: 'Location, engagement terms and detailed eligibility will be confirmed by the recruitment team. Please include your availability in your enquiry.'
+    detail: 'Location, engagement terms and detailed eligibility will be confirmed by the recruitment team. Availability will be requested during the portal application process.'
   }
 ];
 
 function renderCurrentOpenings() {
   const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   document.getElementById('current-opening-cards').innerHTML = currentOpenings.map(job => {
-    const subject = encodeURIComponent('Role enquiry: ' + job.id + ' — ' + job.title);
-    return '<article class="card job"><span class="badge">Recruiting · 23 Oct 2026</span><h3>' + escape(job.title) + '</h3><p class="muted">' + escape(job.location) + '</p><p>' + escape(job.summary) + '</p><p>' + job.skills.map(skill => '<span class="skill">' + escape(skill) + '</span>').join('') + '</p><p><strong>Experience:</strong> ' + escape(job.experience) + '</p><p class="tiny">' + escape(job.detail) + '</p><p class="tiny muted">Reference: ' + escape(job.id) + ' · Engagement terms to be confirmed</p><a class="button primary" href="mailto:info@idea2proj.com?subject=' + subject + '">Enquire by email ↗</a></article>';
+    return '<article class="card job"><span class="badge">Recruiting · 23 Oct 2026</span><h3>' + escape(job.title) + '</h3><p class="muted">' + escape(job.location) + '</p><p>' + escape(job.summary) + '</p><p>' + job.skills.map(skill => '<span class="skill">' + escape(skill) + '</span>').join('') + '</p><p><strong>Experience:</strong> ' + escape(job.experience) + '</p><p class="tiny">' + escape(job.detail) + '</p><p class="tiny muted">Reference: ' + escape(job.id) + ' · Engagement terms to be confirmed</p><button class="button primary" type="button" disabled aria-describedby="application-status">Portal applications unavailable</button></article>';
   }).join('');
 }
 renderCurrentOpenings();
