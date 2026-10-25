@@ -13,6 +13,7 @@ jobs:
       - run: node tests/openings.cjs
       - run: node tests/recruitment.cjs
       - run: node tests/candidate.cjs
+      - run: node tests/applications.cjs
       - run: git diff --check
   backend-policies:
     runs-on: ubuntu-latest
@@ -37,4 +38,6 @@ jobs:
           psql -h localhost -U postgres -v ON_ERROR_STOP=1
           -f tests/backend-bootstrap.sql
           -f supabase/migrations/202610220001_candidate_portal.sql
+          -f supabase/migrations/202610250001_job_applications.sql
           -f tests/backend-policies.sql
+          -f tests/application-policies.sql

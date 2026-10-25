@@ -147,7 +147,7 @@
     await refreshCV(); status('Your CV has been removed.');
   }));
   $('remove-profile').addEventListener('click', () => action(async () => {
-    if (!user || !profile || !confirm('Remove your candidate profile and current CV? Your login account will remain.')) return;
+    if (!user || !profile || !confirm('Remove your candidate profile, current CV and submitted applications? Your login account will remain.')) return;
     checked(await client.storage.from('candidate-cvs').remove([user.id + '/latest.pdf']), 'Unable to remove your CV. Your profile has not been removed.');
     const removed = checked(await client.from('candidate_profiles').delete().eq('id',user.id).select('id'), 'Unable to remove your profile. Please try again.');
     if (!removed.length) throw Error('Your profile could not be removed. Please reload and try again.');
@@ -163,6 +163,7 @@
     client = window.supabase.createClient(window.TALENTFLOW_CONFIG.supabaseUrl,window.TALENTFLOW_CONFIG.supabasePublishableKey,{
       auth:{storage:window.sessionStorage,storageKey:'talentflow-candidate-auth',persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'implicit'}
     });
+    window.TalentFlowCandidate = {client};
     $('setup-notice').hidden = true; permissions();
     // Keep Supabase calls outside the synchronous auth callback to avoid its auth lock.
     client.auth.onAuthStateChange((event,session) => {

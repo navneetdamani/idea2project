@@ -40,7 +40,7 @@ const currentOpenings = [
 function renderCurrentOpenings() {
   const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   document.getElementById('current-opening-cards').innerHTML = currentOpenings.map(job => {
-    return '<article class="card job"><span class="badge">Recruiting · 23 Oct 2026</span><h3>' + escape(job.title) + '</h3><p class="muted">' + escape(job.location) + '</p><p>' + escape(job.summary) + '</p><p>' + job.skills.map(skill => '<span class="skill">' + escape(skill) + '</span>').join('') + '</p><p><strong>Experience:</strong> ' + escape(job.experience) + '</p><p class="tiny">' + escape(job.detail) + '</p><p class="tiny muted">Reference: ' + escape(job.id) + ' · Engagement terms to be confirmed</p><button class="button primary" type="button" disabled aria-describedby="application-status">Portal applications unavailable</button></article>';
+    return '<article class="card job"><span class="badge">Recruiting · 23 Oct 2026</span><h3>' + escape(job.title) + '</h3><p class="muted">' + escape(job.location) + '</p><p>' + escape(job.summary) + '</p><p>' + job.skills.map(skill => '<span class="skill">' + escape(skill) + '</span>').join('') + '</p><p><strong>Experience:</strong> ' + escape(job.experience) + '</p><p class="tiny">' + escape(job.detail) + '</p><p class="tiny muted">Reference: ' + escape(job.id) + ' · Engagement terms to be confirmed</p><a class="button primary" href="candidate.html?job=' + encodeURIComponent(job.id) + '">Apply through portal →</a></article>';
   }).join('');
 }
 renderCurrentOpenings();

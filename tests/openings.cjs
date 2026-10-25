@@ -8,7 +8,7 @@ const context = vm.createContext({document: {getElementById: () => target}, enco
 vm.runInContext(source, context);
 assert.equal((target.innerHTML.match(/<article /g) || []).length, 5);
 assert.doesNotMatch(target.innerHTML, /mailto:|Enquire by email/);
-assert.equal((target.innerHTML.match(/disabled aria-describedby="application-status"/g) || []).length, 5);
+assert.equal((target.innerHTML.match(/href="candidate.html\?job=I2P-/g) || []).length, 5);
 assert.doesNotMatch(target.innerHTML, /deloitte|DLTJP|INR|bill rate|zoom\.us|Process Mining/i);
 vm.runInContext('currentOpenings[0].title = "<img src=x onerror=alert(1)>"; renderCurrentOpenings()', context);
 assert.doesNotMatch(target.innerHTML, /<img/);
