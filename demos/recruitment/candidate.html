@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="portal.css">
 </head>
 <body>
-  <header class="brandbar"><div class="wrap"><a class="brand" href="../../">IDEA <b>2</b> PROJECT</a><nav class="brandlinks" aria-label="Main navigation"><a href="./">Job portal & workflow demo</a><a href="../../contact.html">Contact us ↗</a></nav></div></header>
+  <header class="brandbar"><div class="wrap"><a class="brand" href="../../">IDEA <b>2</b> PROJECT</a><nav class="brandlinks" aria-label="Main navigation"><a href="./">Job opportunities</a><a href="../../contact.html">Contact us ↗</a></nav></div></header>
   <section class="intro"><div class="wrap"><div class="eyebrow">TalentFlow / Candidate account</div><h1>Your next opportunity.<br><span>One profile, kept current.</span></h1><p>Create your account, tell us about your experience, and keep your latest CV ready for the Idea 2 Project recruiting team.</p></div></section>
   <main class="wrap account-main">
     <noscript><p class="notice">JavaScript is needed to sign in and manage your candidate profile.</p></noscript>
@@ -31,7 +31,7 @@
     </div>
     <section id="recovery-area" class="card account-card" hidden><h2>Choose a new password.</h2><form id="recovery-form"><label for="new-password">New password</label><input id="new-password" type="password" minlength="12" maxlength="128" autocomplete="new-password" required><div class="actions"><button class="primary">Update password</button></div></form></section>
     <section id="profile-area" hidden>
-      <div class="account-heading"><div><div class="section-label">Candidate workspace</div><h2>My profile</h2><p id="account-email" class="muted"></p></div><button type="button" id="sign-out">Sign out</button></div>
+      <div class="account-heading"><div><div class="section-label">Candidate workspace</div><h2>My profile</h2><p id="account-email" class="muted"></p></div><div class="actions"><button type="button" id="reload-details">Reload saved details</button><button type="button" id="sign-out">Sign out</button></div></div>
       <div class="account-grid">
         <section class="card account-card"><h2>Make your experience visible.</h2><p class="muted">Keep your details current for the recruiting team.</p>
           <form id="profile-form"><fieldset id="profile-fields"><div class="form-grid">
@@ -45,23 +45,25 @@
             <div class="full"><label class="check-label"><input id="profile-consent" type="checkbox" required><span>I allow Idea 2 Project to store my profile and CV and make them available to authorized recruiters for recruitment. I can remove them from this workspace.</span></label></div>
           </div><div class="actions"><button class="primary" type="submit">Save profile →</button></div></fieldset></form>
         </section>
-        <div><section class="card account-card"><span class="section-label">Latest version</span><h2>My CV</h2><p class="muted">Upload a PDF up to 5 MB. A successful upload replaces your previous CV.</p><p id="cv-status" class="cv-status">Save your profile before uploading a CV.</p>
-          <form id="cv-form"><fieldset id="cv-fields" disabled><label for="cv-file">Select your latest CV</label><input class="cv-input" id="cv-file" type="file" accept=".pdf,application/pdf" required><div class="actions"><button type="submit" class="primary">Upload latest CV ↑</button><button type="button" id="download-cv" disabled>Download CV</button><button type="button" id="remove-cv" disabled>Remove CV</button></div></fieldset></form>
+        <div><section class="card account-card"><span class="section-label">Latest version</span><h2>My CV</h2><p class="muted">Choose a PDF up to 5 MB to upload it automatically. Wait for the saved confirmation before leaving this page. A successful upload replaces your previous CV.</p><p id="cv-status" class="cv-status" role="status" aria-live="polite">Save your profile before uploading a CV.</p>
+          <p id="cv-error" class="status error" role="alert" hidden></p>
+          <div id="saved-cv" hidden><div class="actions"><button type="button" id="download-cv" disabled>Download saved CV</button><button type="button" id="remove-cv" disabled>Remove saved CV</button></div></div>
+          <form id="cv-form"><fieldset id="cv-fields" disabled><label for="cv-file">Choose a PDF to upload</label><input class="cv-input" id="cv-file" type="file" accept=".pdf,application/pdf" required><p id="cv-selection" class="tiny" role="status" aria-live="polite"></p><div class="actions"><button type="submit">Retry upload</button></div></fieldset></form>
           <p class="tiny muted">Your CV is stored privately, outside the public website. Upload only your own CV; omit identity documents and financial information.</p>
         </section><section class="card account-card"><h3>Your information, your control.</h3><p class="tiny muted">Removing your profile also removes your current CV and submitted applications. This keeps your login account so you can return later. For account closure or data questions, contact <a href="mailto:info@idea2proj.com">info@idea2proj.com</a>.</p><div class="profile-actions"><button type="button" class="danger" id="remove-profile">Remove my profile & CV</button></div></section></div>
       </div>
       <section class="card account-card" aria-labelledby="application-heading"><h2 id="application-heading">Apply for an opportunity.</h2><p>Save your profile and upload your CV above, then submit your application here. Recruiters review your current profile and latest CV; updating them also updates what recruiters see for existing applications.</p>
-        <p id="application-status" class="status" role="status" aria-live="polite"></p>
+        <p id="application-readiness" class="notice" role="status">Save your profile and upload your CV to enable applications.</p><p id="application-status" class="status" role="status" aria-live="polite"></p>
         <form id="application-form"><fieldset id="application-fields" disabled>
           <label for="application-job">Choose an open role</label><select id="application-job" required></select>
           <label for="availability-days">Available to start in how many days?</label><input id="availability-days" type="number" min="0" max="365" step="1" required>
           <label for="application-statement">Your relevant experience</label><textarea id="application-statement" minlength="20" maxlength="4000" required placeholder="Describe the experience you bring to this role."></textarea>
           <label class="check-label"><input id="application-consent" type="checkbox" required><span>I ask Idea 2 Project to review this application, my profile and my latest CV for this role. This does not authorize submission to a client.</span></label>
           <div class="actions"><button class="primary" type="submit">Submit application →</button></div>
-        </fieldset></form><h3>My applications</h3><ul id="my-applications"></ul>
+        </fieldset></form><h3>My applications</h3><button type="button" id="refresh-applications">Refresh applications &amp; email status</button><ul id="my-applications" aria-live="polite"></ul>
       </section>
     </section>
   </main>
-  <footer class="footer"><div class="wrap"><a class="brand" href="../../">IDEA <b>2</b> PROJECT</a><span>Specialists who accelerate delivery.</span><a href="./">Explore the recruitment demo ↗</a></div></footer>
+  <footer class="footer"><div class="wrap"><a class="brand" href="../../">IDEA <b>2</b> PROJECT</a><span>Specialists who accelerate delivery.</span><a href="./">Explore opportunities ↗</a></div></footer>
   <script src="config.js"></script><script src="candidate-core.js"></script><script src="vendor/supabase-2.118.0.js"></script><script src="candidate.js"></script><script src="applications.js"></script>
 </body></html>

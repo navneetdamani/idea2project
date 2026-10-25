@@ -9,7 +9,13 @@
     try { sessionStorage.setItem('talentflow-selected-job', desired); } catch {}
   }
   const message = (text, error = false) => { $('application-status').textContent=text; $('application-status').classList.toggle('error',error); };
-  function gates() { $('application-fields').disabled = !user || !jobs.length || busy; }
+  function gates() {
+    const state=window.TalentFlowCandidate.getSnapshot?.();
+    const ready=!state || (state.userId===user?.id && state.profileSaved && state.cvSaved && !state.loading);
+    $('application-fields').disabled = !user || !jobs.length || busy || !ready;
+    $('application-readiness').textContent = !user ? 'Sign in to apply.' : !ready ? 'Save your profile and wait for your CV to show as saved above. The application form will then be enabled.' : 'Your profile and saved CV are ready. Complete the form below to submit an application.';
+    $('refresh-applications').disabled = !user || busy;
+  }
   function checked(result, error) { if(result.error) throw Error(error); return result.data; }
   async function refresh(session) {
     const current = ++revision; user=session?.user || null; jobs=[]; gates();
@@ -26,14 +32,23 @@
     } catch(error) { if(current===revision)message(error.message,true); }
     finally { if(current===revision)gates(); }
   }
-  async function history(current=revision) {
-    const data=checked(await client.from('job_applications').select('id,job_id,submitted_at,status').eq('candidate_id',user.id).order('submitted_at',{ascending:false}), 'Unable to load your applications. Please reload before submitting again.');
+  async function history(current=revision,dispatch=true) {
+    const data=checked(await client.from('job_applications').select('id,job_id,submitted_at,status,job_application_receipts(state,sent_at)').eq('candidate_id',user.id).order('submitted_at',{ascending:false}), 'Unable to load your applications. Please reload before submitting again.');
     if(current!==revision)return;
     $('my-applications').replaceChildren();
     for(const application of data) {
       const item=document.createElement('li');
-      item.textContent=(jobs.find(j=>j.id===application.job_id)?.title || application.job_id)+' · '+application.status+' · '+new Date(application.submitted_at).toLocaleDateString()+' · Reference '+application.id;
+      const receipt=Array.isArray(application.job_application_receipts)?application.job_application_receipts[0]:application.job_application_receipts;
+      const base=(jobs.find(j=>j.id===application.job_id)?.title || application.job_id)+' · '+application.status+' · '+new Date(application.submitted_at).toLocaleDateString()+' · Reference '+application.id;
+      const labels={pending:'Confirmation email queued',sending:'Sending confirmation email',sent:'Confirmation email sent',failed:'Confirmation email failed — your application is saved. Refresh to retry.'};
+      item.textContent=base+' · '+(labels[receipt?.state] || labels.pending);
       $('my-applications').append(item);
+      if(dispatch && client.functions && (!receipt || ['pending','failed'].includes(receipt.state)) && data.indexOf(application)<3) {
+        void client.functions.invoke('application-receipt',{body:{application_id:application.id}}).then(result=>{
+          if(current!==revision)return;
+          item.textContent=base+' · '+(labels[result.data?.state] || 'Confirmation email pending. Your application is saved; refresh to check again.');
+        }).catch(()=>{if(current===revision)item.textContent=base+' · Confirmation email pending. Your application is saved.';});
+      }
     }
     if(!data.length) $('my-applications').textContent='No applications submitted yet.';
   }
@@ -54,12 +69,17 @@
         if(result.error.code==='23505') throw Error('You have already applied for this role. See My applications below.');
         throw Error('Submission could not be confirmed. Reload and check My applications before trying again; the role may have closed.');
       }
-      message('Application submitted. Reference: '+result.data.id+'. The recruitment team can review it in the portal.');
+      const confirmation='Application submitted. Reference: '+result.data.id+'. A confirmation email has been queued. You can check its delivery status under My applications.';
+      message(confirmation);
       $('application-statement').value=''; $('application-consent').checked=false;
-      await history(current);
+      try { await history(current); }
+      catch { message(confirmation+' Application history could not be refreshed. Your submission remains saved.'); }
+      setTimeout(()=>{if(current===revision && user)void history(current,false).catch(()=>{});},4000);
     } catch(error) { if(current===revision)message(error.message,true); }
     finally { busy=false; gates(); }
   });
+  $('refresh-applications').addEventListener('click',()=>{if(user)void history().catch(error=>message(error.message,true));});
+  window.addEventListener?.('candidate-data-changed',()=>{gates();if(user)void history().catch(error=>message(error.message,true));});
   client.auth.onAuthStateChange((event,session)=>{
     if((event==='TOKEN_REFRESHED' || event==='SIGNED_IN') && session?.user?.id===user?.id)return;
     setTimeout(()=>{void refresh(session);},0);
