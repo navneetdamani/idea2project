@@ -9,7 +9,7 @@ const input = {full_name:' Demo Candidate ',headline:'SAP Consultant',location:'
 const flush = async () => {for(let i=0;i<8;i++)await new Promise(setImmediate)};
 function harness(config) {
   const nodes = new Map(), profiles = new Map(), files = new Map(), calls = [];
-  let onAuth, session = null;
+  let onAuth, session = null, listError = false;
   const node = id => {
     if(!nodes.has(id))nodes.set(id,{value:'',checked:false,disabled:false,hidden:false,files:[],dataset:{},listeners:{},classList:{toggle(){}},setAttribute(){},addEventListener(name,fn){this.listeners[name]=fn},reset(){},click(){},remove(){}});
     return nodes.get(id);
@@ -24,7 +24,7 @@ function harness(config) {
       delete(){return {eq(field,id){return {select(){const found=profiles.delete(id);return result(found?[{id}]:[])}}}}}
     }},
     storage:{from(bucket){assert.equal(bucket,'candidate-cvs');return {
-      list(id){return result(files.has(id+'/latest.pdf')?[{name:'latest.pdf',updated_at:'2026-10-22T00:00:00Z'}]:[])},
+      list(id){return listError ? Promise.resolve({error:{message:'temporary outage'}}) : result(files.has(id+'/latest.pdf')?[{name:'latest.pdf',updated_at:'2026-10-22T00:00:00Z'}]:[])},
       upload(key,file,options){calls.push(['upload',key,options]);files.set(key,file);return result({path:key})},
       remove(keys){keys.forEach(k=>files.delete(k));return result([])},
       download(key){return result(files.get(key))}
@@ -33,7 +33,7 @@ function harness(config) {
   const sandbox = {console,CandidateCore:core,TALENTFLOW_CONFIG:config,supabase:{createClient(url,key,options){calls.push(['client',url,key,options]);return client}},document:{getElementById:node,querySelectorAll:()=>tabs,createElement:()=>node('download-link'),body:{append(){}}},URL,sessionStorage:{},location:{href:'https://www.idea2proj.com/demos/recruitment/candidate.html'},setTimeout(fn,delay){if(!delay)setImmediate(fn)},confirm:()=>true};
   sandbox.window=sandbox;
   vm.runInNewContext(fs.readFileSync(path.join(root,'candidate.js'),'utf8'),sandbox);
-  return {node,profiles,files,calls,async event(type,user){session=user?{user}:null;onAuth(type,session);await flush()},async submit(id){node(id).listeners.submit({preventDefault(){}});await flush()},async click(id){node(id).listeners.click();await flush()}};
+  return {node,profiles,files,calls,setListError(value){listError=value},async event(type,user){session=user?{user}:null;onAuth(type,session);await flush()},async submit(id){node(id).listeners.submit({preventDefault(){}});await flush()},async change(id){node(id).listeners.change();await flush()},async click(id){node(id).listeners.click();await flush()}};
 }
 (async()=>{
   assert.equal(core.configReady(cfg),true);
@@ -53,6 +53,11 @@ function harness(config) {
   h.node('profile-consent').checked=true;await h.submit('profile-form');assert.equal(h.profiles.get('user-a').full_name,'Demo Candidate');assert.equal(h.node('cv-fields').disabled,false);
   h.node('cv-file').files=[new File(['%PDF-1.7 latest'],'latest.pdf',{type:'application/pdf'})];await h.submit('cv-form');assert.equal(h.files.size,1);assert.equal(h.calls.find(c=>c[0]==='upload')[1],'user-a/latest.pdf');assert.equal(h.node('download-cv').disabled,false);
   h.node('cv-file').files=[new File(['%PDF-1.7 replacement'],'cv.pdf',{type:'application/pdf'})];await h.submit('cv-form');assert.equal(h.files.size,1);assert.match(await h.files.get('user-a/latest.pdf').text(),/replacement/);
+  await h.click('sign-out');await h.event('SIGNED_IN',user);
+  assert.equal(h.node('full-name').value,'Demo Candidate');assert.equal(h.node('saved-cv').hidden,false);assert.equal(h.node('download-cv').disabled,false);assert.match(h.node('cv-status').textContent,/Saved CV/);
+  h.setListError(true);await h.click('reload-details');assert.equal(h.node('cv-error').hidden,false);assert.match(h.node('cv-status').textContent,/could not be checked/);
+  h.setListError(false);await h.click('reload-details');assert.equal(h.node('cv-error').hidden,true);assert.equal(h.node('download-cv').disabled,false);
+  h.node('cv-file').files=[new File(['%PDF-1.7 automatically saved'],'auto.pdf',{type:'application/pdf'})];await h.change('cv-file');assert.match(await h.files.get('user-a/latest.pdf').text(),/automatically saved/);assert.match(h.node('cv-selection').textContent,/auto.pdf is saved/);
   await h.event('SIGNED_IN',{id:'user-b',email:'b@example.invalid',user_metadata:{}});assert.equal(h.node('full-name').value,'');assert.equal(h.node('download-cv').disabled,true);assert.equal(h.node('cv-fields').disabled,true);
   await h.event('PASSWORD_RECOVERY',user);assert.equal(h.node('recovery-area').hidden,false);assert.equal(h.node('profile-area').hidden,true);h.node('new-password').value='New-fictional-password';await h.submit('recovery-form');assert.equal(h.node('recovery-area').hidden,true);
   await h.click('remove-profile');assert.equal(h.profiles.has('user-a'),false);assert.equal(h.files.has('user-a/latest.pdf'),false);

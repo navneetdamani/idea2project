@@ -1,6 +1,7 @@
 -- Test-only minimal Supabase schemas for PostgreSQL policy regression checks.
 create role anon nologin;
 create role authenticated nologin;
+create role service_role nologin bypassrls;
 create schema auth;
 create schema storage;
 create table auth.users(id uuid primary key);
