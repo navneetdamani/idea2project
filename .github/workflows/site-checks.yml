@@ -43,5 +43,7 @@ jobs:
           -f supabase/migrations/202610250001_job_applications.sql
           -f supabase/migrations/202610250002_application_receipts.sql
           -f supabase/migrations/202610270001_recruiter_notifications.sql
+          -f supabase/migrations/202610270002_recruiter_invitations.sql
           -f tests/backend-policies.sql
           -f tests/application-policies.sql
+          -f tests/recruiter-invitations.sql
