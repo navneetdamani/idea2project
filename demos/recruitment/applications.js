@@ -5,6 +5,7 @@
   if (!client) return;
   let user = null, revision = 0, busy = false, jobs = [];
   const desired = new URL(window.location.href).searchParams.get('job');
+  const requestedApplication = new URL(window.location.href).searchParams.get('application');
   if (/^I2P-\d{8}-\d{2}$/.test(desired || '')) {
     try { sessionStorage.setItem('talentflow-selected-job', desired); } catch {}
   }
@@ -33,17 +34,19 @@
     finally { if(current===revision)gates(); }
   }
   async function history(current=revision,dispatch=true) {
-    const data=checked(await client.from('job_applications').select('id,job_id,submitted_at,status,job_application_receipts(state,sent_at)').eq('candidate_id',user.id).order('submitted_at',{ascending:false}), 'Unable to load your applications. Please reload before submitting again.');
+    const data=checked(await client.from('job_applications').select('id,job_id,submitted_at,status,job_application_receipts(state,sent_at,recruiter_state)').eq('candidate_id',user.id).order('submitted_at',{ascending:false}), 'Unable to load your applications. Please reload before submitting again.');
     if(current!==revision)return;
     $('my-applications').replaceChildren();
     for(const application of data) {
       const item=document.createElement('li');
+      item.id='application-'+application.id;
+      if(application.id===requestedApplication){item.style && (item.style.outline='2px solid #f26a21');item.setAttribute?.('aria-current','true');}
       const receipt=Array.isArray(application.job_application_receipts)?application.job_application_receipts[0]:application.job_application_receipts;
       const base=(jobs.find(j=>j.id===application.job_id)?.title || application.job_id)+' · '+application.status+' · '+new Date(application.submitted_at).toLocaleDateString()+' · Reference '+application.id;
       const labels={pending:'Confirmation email queued',sending:'Sending confirmation email',sent:'Confirmation email sent',failed:'Confirmation email failed — your application is saved. Refresh to retry.'};
       item.textContent=base+' · '+(labels[receipt?.state] || labels.pending);
       $('my-applications').append(item);
-      if(dispatch && client.functions && (!receipt || ['pending','failed'].includes(receipt.state)) && data.indexOf(application)<3) {
+      if(dispatch && client.functions && (!receipt || ['pending','failed','sending'].includes(receipt.state) || receipt.recruiter_state!=='sent') && data.indexOf(application)<3) {
         void client.functions.invoke('application-receipt',{body:{application_id:application.id}}).then(result=>{
           if(current!==revision)return;
           item.textContent=base+' · '+(labels[result.data?.state] || 'Confirmation email pending. Your application is saved; refresh to check again.');
@@ -51,6 +54,8 @@
       }
     }
     if(!data.length) $('my-applications').textContent='No applications submitted yet.';
+    if(requestedApplication && !data.some(a=>a.id===requestedApplication))message('This application is not available in this account. Sign in with the email address you used to apply.',true);
+    if(requestedApplication)$('my-applications').scrollIntoView?.({block:'start'});
   }
   $('application-form').addEventListener('submit',async event=>{
     event.preventDefault(); if(!user || busy)return;

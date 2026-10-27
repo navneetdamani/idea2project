@@ -14,6 +14,15 @@ insert into storage.objects(bucket_id,name) values('candidate-cvs',auth.uid()::t
 insert into public.job_applications(candidate_id,job_id,availability_days,statement,consent_version) values(auth.uid(),'I2P-20261023-03',30,'Fictional relevant experience for this role.','2026-10-app-v1');
 do $$ begin
   if (select count(*) from public.job_application_receipts)<>1 then raise exception 'Receipt not queued atomically'; end if;
+  if (select recruiter_state from public.job_application_receipts limit 1)<>'pending' then raise exception 'Recruiter email not queued'; end if;
+  begin
+    update public.job_application_receipts set recruiter_state='sent';
+    raise exception 'Candidate can forge recruiter email';
+  exception when insufficient_privilege then null; end;
+  begin
+    perform public.claim_application_recruiter_notice((select id from public.job_applications limit 1));
+    raise exception 'Candidate can claim recruiter email queue';
+  exception when insufficient_privilege then null; end;
   begin
     update public.job_application_receipts set state='sent';
     raise exception 'Candidate can forge email delivery';
