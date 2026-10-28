@@ -18,6 +18,8 @@ const submit=async()=>{await node('application-form').listeners.submit({preventD
   hasProfile=true;await submit();assert.match(node('application-status').textContent,/Upload your latest CV/);
   hasCV=true;node('application-consent').checked=false;await submit();assert.equal(applications.length,0);
   node('application-consent').checked=true;await submit();assert.equal(applications.length,1);assert.match(node('application-status').textContent,/Application submitted.*test-reference/);assert.equal(node('my-applications').children.length,1);
+  assert.equal(node('application-total').textContent,'1');assert.equal(node('submission-confirmation').hidden,false);assert.equal(node('submission-reference').textContent,'test-reference');
+  applications[0].status='in_review';applications[0].published_jobs={title:'Archived <script>role</script>',is_open:false};node('refresh-applications').listeners.click();await flush();assert.equal(node('application-reviewing').textContent,'1');assert.match(node('my-applications').children[0].innerHTML,/In review/);assert.match(node('my-applications').children[0].innerHTML,/Archived &lt;script&gt;/);assert.doesNotMatch(node('my-applications').children[0].innerHTML,/<script>/);
   node('application-statement').value='Another fictional response for the same role.';node('application-consent').checked=true;await submit();assert.match(node('application-status').textContent,/already applied/);assert.equal(applications.length,1);
   authCallback('SIGNED_OUT',null);await flush();assert.equal(node('application-fields').disabled,true);assert.equal(node('my-applications').children.length,0);
   console.log('PASS: selected role, profile/CV prerequisites, consent, confirmed submission, duplicate handling and sign-out isolation');

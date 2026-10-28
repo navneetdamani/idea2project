@@ -4,7 +4,7 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex"><meta name="referrer" content="no-referrer">
   <title>Candidate account | TalentFlow · Idea 2 Project</title>
-  <link rel="stylesheet" href="portal.css">
+  <link rel="stylesheet" href="portal.css?v=20261028-dashboard">
 </head>
 <body>
   <header class="brandbar"><div class="wrap"><a class="brand" href="../../">IDEA <b>2</b> PROJECT</a><nav class="brandlinks" aria-label="Main navigation"><a href="./">Job opportunities</a><a href="../../contact.html">Contact us ↗</a></nav></div></header>
@@ -31,7 +31,16 @@
     </div>
     <section id="recovery-area" class="card account-card" hidden><h2>Choose a new password.</h2><form id="recovery-form"><label for="new-password">New password</label><input id="new-password" type="password" minlength="12" maxlength="128" autocomplete="new-password" required><div class="actions"><button class="primary">Update password</button></div></form></section>
     <section id="profile-area" hidden>
-      <div class="account-heading"><div><div class="section-label">Candidate workspace</div><h2>My profile</h2><p id="account-email" class="muted"></p></div><div class="actions"><button type="button" id="reload-details">Reload saved details</button><button type="button" id="sign-out">Sign out</button></div></div>
+      <div class="account-heading"><div><div class="section-label">Candidate workspace</div><h2>My workspace</h2><p id="account-email" class="muted"></p></div><div class="actions"><button type="button" id="reload-details">Reload saved details</button><button type="button" id="sign-out">Sign out</button></div></div>
+      <section id="candidate-dashboard" class="dashboard-section" aria-labelledby="dashboard-heading">
+        <div id="submission-confirmation" class="submission-success" role="status" hidden><span class="section-label">Successfully submitted</span><h2>Thank you. Your application is with us.</h2><p>You can return here at any time to check its status. Reference: <span id="submission-reference" class="reference"></span></p></div>
+        <div class="account-heading"><div><span class="section-label">Your progress</span><h2 id="dashboard-heading">My applications</h2></div><button type="button" id="refresh-applications">Refresh status</button></div>
+        <div class="dashboard-metrics"><div><span id="application-total">0</span><p>Applications</p></div><div><span id="application-reviewing">0</span><p>In review</p></div><div><span id="application-closed">0</span><p>Closed</p></div></div>
+        <p id="dashboard-readiness" class="muted" role="status">Checking your saved details...</p>
+        <div class="actions"><a class="button primary" href="#new-application">Apply for an opportunity</a><a class="button" href="#profile-editor">Profile &amp; CV</a></div>
+        <ul id="my-applications" class="application-records" aria-live="polite"></ul>
+      </section>
+      <details id="profile-editor" class="profile-editor" open><summary>Manage your profile &amp; latest CV</summary>
       <div class="account-grid">
         <section class="card account-card"><h2>Make your experience visible.</h2><p class="muted">Keep your details current for the recruiting team.</p>
           <form id="profile-form"><fieldset id="profile-fields"><div class="form-grid">
@@ -52,7 +61,8 @@
           <p class="tiny muted">Your CV is stored privately, outside the public website. Upload only your own CV; omit identity documents and financial information.</p>
         </section><section class="card account-card"><h3>Your information, your control.</h3><p class="tiny muted">Removing your profile also removes your current CV and submitted applications. This keeps your login account so you can return later. For account closure or data questions, contact <a href="mailto:info@idea2proj.com">info@idea2proj.com</a>.</p><div class="profile-actions"><button type="button" class="danger" id="remove-profile">Remove my profile & CV</button></div></section></div>
       </div>
-      <section class="card account-card" aria-labelledby="application-heading"><h2 id="application-heading">Apply for an opportunity.</h2><p>Save your profile and upload your CV above, then submit your application here. Recruiters review your current profile and latest CV; updating them also updates what recruiters see for existing applications.</p>
+      </details>
+      <section id="new-application" class="card account-card" aria-labelledby="application-heading"><h2 id="application-heading">Apply for an opportunity.</h2><p>Save your profile and upload your CV above, then submit your application here. Recruiters review your current profile and latest CV; updating them also updates what recruiters see for existing applications.</p>
         <p id="application-readiness" class="notice" role="status">Save your profile and upload your CV to enable applications.</p><p id="application-status" class="status" role="status" aria-live="polite"></p>
         <form id="application-form"><fieldset id="application-fields" disabled>
           <label for="application-job">Choose an open role</label><select id="application-job" required></select>
@@ -60,10 +70,10 @@
           <label for="application-statement">Your relevant experience</label><textarea id="application-statement" minlength="20" maxlength="4000" required placeholder="Describe the experience you bring to this role."></textarea>
           <label class="check-label"><input id="application-consent" type="checkbox" required><span>I ask Idea 2 Project to review this application, my profile and my latest CV for this role. This does not authorize submission to a client.</span></label>
           <div class="actions"><button class="primary" type="submit">Submit application →</button></div>
-        </fieldset></form><h3>My applications</h3><button type="button" id="refresh-applications">Refresh applications &amp; email status</button><ul id="my-applications" aria-live="polite"></ul>
+        </fieldset></form>
       </section>
     </section>
   </main>
   <footer class="footer"><div class="wrap"><a class="brand" href="../../">IDEA <b>2</b> PROJECT</a><span>Specialists who accelerate delivery.</span><a href="./">Explore opportunities ↗</a></div></footer>
-  <script src="config.js"></script><script src="candidate-core.js"></script><script src="vendor/supabase-2.118.0.js"></script><script src="candidate.js"></script><script src="applications.js"></script>
+  <script src="config.js"></script><script src="candidate-core.js"></script><script src="vendor/supabase-2.118.0.js"></script><script src="candidate.js?v=20261028-dashboard"></script><script src="applications.js?v=20261028-dashboard"></script>
 </body></html>

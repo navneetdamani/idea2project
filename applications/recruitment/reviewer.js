@@ -23,6 +23,7 @@
       const job=checked(await client.from('published_jobs').select('title').eq('id',app.job_id).maybeSingle(),'Unable to load the role.');
       if(current!==revision)return;
       candidateId=app.candidate_id;
+      $('review-all').href='admin.html?job='+encodeURIComponent(app.job_id);
       $('review-role').textContent=job?.title||app.job_id;
       $('review-reference').textContent='Reference '+app.id+' | Submitted '+new Date(app.submitted_at).toLocaleString();
       $('review-state').textContent='Current status: '+({submitted:'Submitted',in_review:'In review',closed:'Closed'}[app.status]||app.status);

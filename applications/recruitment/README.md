@@ -47,3 +47,12 @@ The review page requires an account already authorized in `public.recruiters`; c
 Checks: `node tests/receipt-function.cjs`, `node tests/reviewer.cjs`, `node tests/applications.cjs`, and the PostgreSQL policy job (which includes the new migration). Do not add SMTP credentials, auth sessions or candidate data to the repository.
 
 Approved reviewers who have not registered yet can be recorded by an administrator in the private `recruiter_invitations` table after applying migration `202610270002_recruiter_invitations.sql`. Only explicitly approved, verified mailbox identities activate access, and changing away from an approved email removes the invitation-derived role. The public migration contains no approved mailbox addresses. Candidates cannot read or change the invitation list. For revocation, administrators remove both the invitation and its existing recruiter role.
+
+
+## Recruiter console and candidate dashboard
+
+Apply `supabase/migrations/202610280002_recruitment_dashboards.sql` before publishing these pages. The candidate workspace now places application cards, counts, receipt status and submission confirmation above the collapsible profile/CV editor. Closed applied-job titles remain readable only to their applicant and approved recruiters.
+
+`admin.html` is the recruiter console. Approved recruiters can select open or retired jobs, view all applicants in pages of 50, search names/skills/locations, filter statuses, inspect current profiles, download private CVs and manually update Submitted/In review/Closed status. All console RPCs verify the authenticated recruiter allowlist server-side. Review updates require the expected previous status, set a timestamp and create a private audit event. They appear in candidate dashboards on refresh. They do not send offer/rejection messages or automatically select candidates.
+
+Existing reviewer email links still work; their detail page links to all applicants for the job. New admin notification emails open the console with the application selected. The email function must be redeployed after this change.
