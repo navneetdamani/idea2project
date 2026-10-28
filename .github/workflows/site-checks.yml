@@ -16,6 +16,7 @@ jobs:
       - run: node tests/applications.cjs
       - run: node tests/receipt-function.cjs
       - run: node tests/reviewer.cjs
+      - run: node tests/portal-routes.cjs
       - run: git diff --check
   backend-policies:
     runs-on: ubuntu-latest

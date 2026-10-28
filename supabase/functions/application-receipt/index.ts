@@ -25,10 +25,10 @@ Deno.serve(async request=>{
   if(!Deno.env.get('RECRUITMENT_SMTP_PASSWORD'))return reply(503,{error:'Email delivery is being configured',state:'pending',recruiter_state:'pending'});
   const {data:job,error:jobError}=await admin.from('published_jobs').select('title').eq('id',application.job_id).single();
   if(jobError||!job)return reply(503,{error:'Job lookup unavailable'});
-  const title=job.title.replace(/[\n]/g,' ');
+  const title=job.title.replace(/[\r\n]/g,' ');
   const submitted=new Date(application.submitted_at).toLocaleString('en-US',{timeZone:'Asia/Kolkata',dateStyle:'medium',timeStyle:'short'})+' IST';
-  const candidateURL=origin+'/demos/recruitment/candidate.html?application='+id+'#my-applications';
-  const recruiterURL=origin+'/demos/recruitment/reviewer.html?application='+id;
+  const candidateURL=origin+'/applications/recruitment/candidate.html?application='+id+'#my-applications';
+  const recruiterURL=origin+'/applications/recruitment/reviewer.html?application='+id;
   const detail='\n\nApplication reference: '+id+'\nSubmitted: '+submitted;
   const candidateNote='Sign in with the email address you used to apply. Under My applications, check the latest status: Submitted, In review or Closed. You can also update your profile and latest CV. This email confirms receipt; it is not a selection or interview confirmation.';
   const recruiterNote='Sign in with an authorized recruiter account to review the application, candidate profile and latest CV securely inside the portal.';

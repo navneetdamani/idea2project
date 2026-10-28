@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const path = require('node:path');
-const source = fs.readFileSync(path.join(__dirname, '../demos/recruitment/openings.js'), 'utf8');
+const source = fs.readFileSync(path.join(__dirname, '../applications/recruitment/openings.js'), 'utf8');
 const target = {innerHTML: ''};
 const context = vm.createContext({document: {getElementById: () => target}, encodeURIComponent});
 vm.runInContext(source, context);
