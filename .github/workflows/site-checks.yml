@@ -48,6 +48,7 @@ jobs:
           -f supabase/migrations/202610270003_current_openings.sql
           -f supabase/migrations/202610280001_retire_older_openings.sql
           -f supabase/migrations/202610280002_recruitment_dashboards.sql
+          -f supabase/migrations/202610280003_recruiter_openings.sql
           -f tests/backend-policies.sql
           -f tests/application-policies.sql
           -f tests/recruiter-invitations.sql
