@@ -2,8 +2,8 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const core = require('../demos/recruitment/candidate-core.js');
-const root = path.join(__dirname,'../demos/recruitment');
+const core = require('../applications/recruitment/candidate-core.js');
+const root = path.join(__dirname,'../applications/recruitment');
 const cfg = {supabaseUrl:'https://example-project.supabase.co',supabasePublishableKey:'sb_publishable_abcdefghijklmnopqrstuv'};
 const input = {full_name:' Demo Candidate ',headline:'SAP Consultant',location:'Remote',phone:'',experience_years:'7.5',skills:'SAP PS, SAP PS, FI/CO',summary:'Sample projects',consent:true};
 const flush = async () => {for(let i=0;i<8;i++)await new Promise(setImmediate)};
@@ -30,7 +30,7 @@ function harness(config) {
       download(key){return result(files.get(key))}
     }}}
   };
-  const sandbox = {console,CandidateCore:core,TALENTFLOW_CONFIG:config,supabase:{createClient(url,key,options){calls.push(['client',url,key,options]);return client}},document:{getElementById:node,querySelectorAll:()=>tabs,createElement:()=>node('download-link'),body:{append(){}}},URL,sessionStorage:{},location:{href:'https://www.idea2proj.com/demos/recruitment/candidate.html'},setTimeout(fn,delay){if(!delay)setImmediate(fn)},confirm:()=>true};
+  const sandbox = {console,CandidateCore:core,TALENTFLOW_CONFIG:config,supabase:{createClient(url,key,options){calls.push(['client',url,key,options]);return client}},document:{getElementById:node,querySelectorAll:()=>tabs,createElement:()=>node('download-link'),body:{append(){}}},URL,sessionStorage:{},location:{href:'https://www.idea2proj.com/applications/recruitment/candidate.html'},setTimeout(fn,delay){if(!delay)setImmediate(fn)},confirm:()=>true};
   sandbox.window=sandbox;
   vm.runInNewContext(fs.readFileSync(path.join(root,'candidate.js'),'utf8'),sandbox);
   return {node,profiles,files,calls,setListError(value){listError=value},async event(type,user){session=user?{user}:null;onAuth(type,session);await flush()},async submit(id){node(id).listeners.submit({preventDefault(){}});await flush()},async change(id){node(id).listeners.change();await flush()},async click(id){node(id).listeners.click();await flush()}};
@@ -46,7 +46,7 @@ function harness(config) {
   for(const file of [new File(['text'],'cv.pdf',{type:'application/pdf'}),new File(['%PDF-1'],'cv.html',{type:'text/html'}),new File(['%PDF-1',new Uint8Array(core.MAX_CV_BYTES)],'cv.pdf',{type:'application/pdf'})])await assert.rejects(()=>core.validateCV(file));
   let h=harness({});assert.equal(h.node('auth-fields').disabled,true);assert.equal(h.calls.length,0);
   h=harness(cfg);assert.equal(h.node('setup-notice').hidden,true);assert.equal(h.node('auth-fields').disabled,false);
-  await h.click('signup-tab');h.node('auth-email').value='sample@example.invalid';h.node('auth-password').value='A-fictional-password';h.node('signup-name').value='Demo Candidate';await h.submit('auth-form');assert.equal(h.calls.find(c=>c[0]==='signup')[1].options.emailRedirectTo,'https://www.idea2proj.com/demos/recruitment/candidate.html');assert.equal(h.node('auth-password').value,'');
+  await h.click('signup-tab');h.node('auth-email').value='sample@example.invalid';h.node('auth-password').value='A-fictional-password';h.node('signup-name').value='Demo Candidate';await h.submit('auth-form');assert.equal(h.calls.find(c=>c[0]==='signup')[1].options.emailRedirectTo,'https://www.idea2proj.com/applications/recruitment/candidate.html');assert.equal(h.node('auth-password').value,'');
   const user={id:'user-a',email:'sample@example.invalid',user_metadata:{full_name:'Demo Candidate'}};
   await h.event('SIGNED_IN',user);assert.equal(h.node('profile-area').hidden,false);assert.equal(h.node('cv-fields').disabled,true);
   for(const [id,key] of Object.entries({'full-name':'full_name','headline':'headline','profile-location':'location','phone':'phone','experience-years':'experience_years','profile-skills':'skills','summary':'summary'}))h.node(id).value=input[key];

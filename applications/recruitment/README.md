@@ -1,6 +1,6 @@
 # TalentFlow recruitment portal
 
-Live path: https://www.idea2proj.com/demos/recruitment/
+Live path: https://www.idea2proj.com/applications/recruitment/
 
 The portal follows the Idea 2 Project cream, charcoal and orange theme. `candidate.html` provides a separate candidate account workspace for email/password registration, verification, recovery, profile editing, and latest-PDF CV upload/replacement/download/removal. It is intentionally disabled until a new Supabase project is connected. See [`supabase/SETUP.md`](../../supabase/SETUP.md) and the SQL migration for setup and access controls.
 
@@ -12,7 +12,7 @@ Scores are deterministic examples based on self-reported years, implementation c
 
 ## Check locally
 
-Run `node tests/recruitment.cjs` and `node tests/candidate.cjs` from the repository root. Serve the repository with a static HTTP server and open `/demos/recruitment/` and `/demos/recruitment/candidate.html`. The GitHub Actions Site checks workflow also verifies the migration's access policies in disposable PostgreSQL.
+Run `node tests/recruitment.cjs` and `node tests/candidate.cjs` from the repository root. Serve the repository with a static HTTP server and open `/applications/recruitment/` and `/applications/recruitment/candidate.html`. The GitHub Actions Site checks workflow also verifies the migration's access policies in disposable PostgreSQL.
 
 ## Deployment and integration boundary
 

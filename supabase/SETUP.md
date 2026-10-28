@@ -2,7 +2,7 @@
 
 The website remains on GitHub Pages. Supabase provides email/password authentication, a PostgreSQL candidate-profile database, and a private CV storage bucket. No additional web server is needed for these candidate features.
 
-The checked-in `demos/recruitment/config.js` is intentionally empty. Candidate registration, profile saving, and uploads stay unavailable until this setup is complete. The JD/screening/ranking workflow remains a separate fictional browser-local demonstration; it does not read candidate accounts or CVs.
+The checked-in `applications/recruitment/config.js` is intentionally empty. Candidate registration, profile saving, and uploads stay unavailable until this setup is complete. The JD/screening/ranking workflow remains a separate fictional browser-local demonstration; it does not read candidate accounts or CVs.
 
 ## 1. Create the project
 
@@ -25,9 +25,9 @@ Do not make the bucket public or disable row-level security.
 
 Enable email/password sign-up, keep email confirmation enabled, and set the minimum password length to 12. Set the Site URL to:
 
-`https://www.idea2proj.com/demos/recruitment/candidate.html`
+`https://www.idea2proj.com/applications/recruitment/candidate.html`
 
-Add this exact URL to the allowed redirect URLs. Both verification and password recovery return there. For local testing only, optionally add `http://127.0.0.1:8765/demos/recruitment/candidate.html` and remove it when finished.
+Add this exact URL to the allowed redirect URLs. Both verification and password recovery return there. For local testing only, optionally add `http://127.0.0.1:8765/applications/recruitment/candidate.html` and remove it when finished.
 
 Configure a production SMTP provider and an authenticated sender domain before inviting candidates. Supabase's default email sender is restricted and is not suitable for a public recruiting launch. Test verification and password-reset delivery to a non-team test address. Review sign-up rate limits and enable bot protection before public promotion; if CAPTCHA is enabled, connect its widget before accepting registrations.
 
@@ -35,7 +35,7 @@ Configure a production SMTP provider and an authenticated sender domain before i
 
 From the project's API/connect settings, copy the project URL and **publishable key**. The supported URL format is `https://<project-ref>.supabase.co`.
 
-Update only these public values in `demos/recruitment/config.js`:
+Update only these public values in `applications/recruitment/config.js`:
 
 ```js
 window.TALENTFLOW_CONFIG = Object.freeze({
@@ -82,4 +82,4 @@ Confirm the organization's privacy notice, data location, retention period, acce
 - [Storage file limits](https://supabase.com/docs/guides/storage/buckets/creating-buckets)
 - [PostgreSQL row-level security](https://supabase.com/docs/guides/database/postgres/row-level-security)
 
-The vendored browser client is `@supabase/supabase-js` 2.118.0, taken from the official npm package with its SHA-512 registry integrity verified. Its license is in `demos/recruitment/vendor/SUPABASE-LICENSE`. Review and test dependency updates before replacing the pinned file.
+The vendored browser client is `@supabase/supabase-js` 2.118.0, taken from the official npm package with its SHA-512 registry integrity verified. Its license is in `applications/recruitment/vendor/SUPABASE-LICENSE`. Review and test dependency updates before replacing the pinned file.
