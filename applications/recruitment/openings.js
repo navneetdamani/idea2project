@@ -1,5 +1,73 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
+{
+  "id": "I2P-20261028-01",
+  "title": "SAP HR Time Management (CATS) Consultant",
+  "published": "28 Oct 2026",
+  "location": "India - office location to be confirmed; hybrid",
+  "experience": "6-9 years",
+  "summary": "Configure SAP HR Time Management and CATS, covering work schedules, leave balances, time capture and payroll integration.",
+  "skills": [
+    "SAP HR",
+    "CATS",
+    "Time Management",
+    "Work schedules",
+    "Time evaluation",
+    "Payroll integration"
+  ],
+  "detail": "One Senior Consultant opening. Schedule: 2-11 p.m. IST. Configure holiday calendars and rotational schedules, accruals and time-off requests; capture time against cost objects and WBS elements; resolve and approve time data, process historical corrections and support period-end closing."
+},
+{
+  "id": "I2P-20261028-02",
+  "title": "SAP BIB & HR ABAP Senior Consultant",
+  "published": "28 Oct 2026",
+  "location": "Hyderabad, Mumbai, Bengaluru, Gurugram, Chennai, Kolkata or Pune; hybrid",
+  "experience": "7-10 years overall; 6+ years in SAP HR technical AMS / production support",
+  "summary": "Provide L3 support and enhancements for SAP HR master-data integration using Business Integration Builder, HR ABAP and IDocs across S/4HANA and ECC.",
+  "skills": [
+    "SAP BIB",
+    "HR ABAP",
+    "BADIs",
+    "IDocs",
+    "S/4HANA / ECC",
+    "ABAP on Cloud"
+  ],
+  "detail": "One opening. Schedule: 2-11 p.m. IST. Troubleshoot PA/OM Mini Master replication, BIB configuration, custom BADIs and IDoc partner profiles; debug ABAP enhancements and manage incidents within SLAs. At least one AMS integration project is required. CPI or PI/PO experience is useful. The JD contains inconsistent generic experience wording; final eligibility will be confirmed during recruiter review."
+},
+{
+  "id": "I2P-20261028-03",
+  "title": "Oracle US Payroll Functional Consultant",
+  "published": "28 Oct 2026",
+  "location": "Bengaluru - five days per week in the office",
+  "experience": "8+ years overall; 5+ years relevant Oracle Payroll experience",
+  "summary": "Support and enhance Oracle Fusion HCM Cloud US Payroll, including payroll elements, taxation, calculation cards, balances and year-end processing.",
+  "skills": [
+    "Oracle Fusion HCM",
+    "US Payroll",
+    "Element configuration",
+    "HDL",
+    "Fast Formulas",
+    "Payroll support"
+  ],
+  "detail": "One Consultant / Senior Consultant opening. Stated shift: 11 a.m.-8 p.m.; time zone to be confirmed. Troubleshoot payroll issues, implement configuration changes, test releases and patches, maintain functional designs and configuration workbooks, and coordinate with customers and vendors. The JD also contains a broader generic experience range; final eligibility will be confirmed during recruiter review."
+},
+{
+  "id": "I2P-20261028-04",
+  "title": "SAP SuccessFactors EC Time & Attendance Senior Consultant",
+  "published": "28 Oct 2026",
+  "location": "India - office location and work arrangement to be confirmed",
+  "experience": "5+ years overall; JD requests 5-6 years in SAP SuccessFactors Time Management",
+  "summary": "Deliver hands-on SuccessFactors Employee Central Time Off, Time Tracking and Attendance configuration, implementation and payroll integration support.",
+  "skills": [
+    "SuccessFactors EC",
+    "Time Tracking",
+    "Time Off / Attendance",
+    "SAP certification",
+    "Payroll replication",
+    "UAT"
+  ],
+  "detail": "One opening. Mandatory: 2-3 end-to-end Time Tracking implementations and active SAP SuccessFactors Employee Central Core & Time Management certification. Stated shift: 2-8 p.m.; time zone to be confirmed. Support configuration, unit testing, UAT, production validation, enhancements and EC-to-S/4HANA payroll replication. Attendance reporting and EC-ECP payroll replication knowledge are useful."
+},
   {
     id: 'I2P-20261027-01', title: 'FIS Profile 7 Techno-Functional Consultant', published: '27 Oct 2026',
     location: 'Hyderabad, Bengaluru, Chennai or Pune', experience: '2-5 years',
