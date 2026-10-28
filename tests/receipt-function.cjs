@@ -17,7 +17,7 @@ function harness({authorized=true,owned=true,password=true,state='pending',recru
   let h=harness();assert.equal((await h.run('')).status,401);
   h=harness();assert.equal((await h.run()).status,200);assert.deepEqual(h.sends.map(x=>x.to),['candidate@example.invalid','info@idea2proj.com']);
   assert.match(h.sends[0].text,/candidate\.html\?application=11111111-1111-1111-1111-111111111111#my-applications/);assert.match(h.sends[0].html,/Check application status/);
-  assert.match(h.sends[1].text,/reviewer\.html\?application=/);assert.match(h.sends[1].text,/authorized recruiter/);
+  assert.match(h.sends[1].text,/admin\.html\?application=/);assert.match(h.sends[1].text,/authorized recruiter/);
   await h.run();assert.equal(h.sends.length,2,'Retry must not resend successful messages');
   h=harness({state:'sent',recruiterState:'failed'});await h.run();assert.equal(h.sends.length,1);assert.equal(h.sends[0].to,'info@idea2proj.com');
   h=harness({failTo:'info@idea2proj.com'});assert.equal((await h.run()).status,503);assert.equal(h.receipt.state,'sent');assert.equal(h.receipt.recruiter_state,'failed');

@@ -28,7 +28,7 @@ Deno.serve(async request=>{
   const title=job.title.replace(/[\r\n]/g,' ');
   const submitted=new Date(application.submitted_at).toLocaleString('en-US',{timeZone:'Asia/Kolkata',dateStyle:'medium',timeStyle:'short'})+' IST';
   const candidateURL=origin+'/applications/recruitment/candidate.html?application='+id+'#my-applications';
-  const recruiterURL=origin+'/applications/recruitment/reviewer.html?application='+id;
+  const recruiterURL=origin+'/applications/recruitment/admin.html?application='+id;
   const detail='\n\nApplication reference: '+id+'\nSubmitted: '+submitted;
   const candidateNote='Sign in with the email address you used to apply. Under My applications, check the latest status: Submitted, In review or Closed. You can also update your profile and latest CV. This email confirms receipt; it is not a selection or interview confirmation.';
   const recruiterNote='Sign in with an authorized recruiter account to review the application, candidate profile and latest CV securely inside the portal.';

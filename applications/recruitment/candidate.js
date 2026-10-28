@@ -11,6 +11,7 @@
     $('status').hidden = !message;
   }
   function permissions() {
+    document.body.classList?.toggle('is-signed-in',Boolean(user));
     $('auth-fields').disabled = !client || busy;
     $('forgot-password').disabled = !client || busy;
     $('profile-fields').disabled = !user || busy || loading;

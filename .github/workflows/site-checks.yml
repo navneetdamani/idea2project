@@ -15,6 +15,7 @@ jobs:
       - run: node tests/applications.cjs
       - run: node tests/receipt-function.cjs
       - run: node tests/reviewer.cjs
+      - run: node tests/admin.cjs
       - run: node tests/portal-routes.cjs
       - run: git diff --check
   backend-policies:
@@ -46,6 +47,8 @@ jobs:
           -f supabase/migrations/202610270002_recruiter_invitations.sql
           -f supabase/migrations/202610270003_current_openings.sql
           -f supabase/migrations/202610280001_retire_older_openings.sql
+          -f supabase/migrations/202610280002_recruitment_dashboards.sql
           -f tests/backend-policies.sql
           -f tests/application-policies.sql
           -f tests/recruiter-invitations.sql
+          -f tests/dashboard-policies.sql

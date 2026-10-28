@@ -13,3 +13,8 @@ for(const name of ['index.html','candidate.html','reviewer.html']){
   }
 }
 console.log('PASS: canonical portal assets and legacy redirects preserve query strings and verification fragments');
+const admin=fs.readFileSync(path.join(root,'applications/recruitment/admin.html'),'utf8');
+for(const [,url] of admin.matchAll(/(?:src|href)="([^"<>]+)"/g)){
+  if(/^(?:https?:|mailto:|tel:|#)/.test(url))continue;
+  assert.ok(fs.existsSync(path.resolve(root,'applications/recruitment',url.split(/[?#]/)[0])),'Admin asset missing: '+url);
+}
