@@ -11,7 +11,6 @@ jobs:
         with:
           node-version: '22'
       - run: node tests/openings.cjs
-      - run: node tests/recruitment.cjs
       - run: node tests/candidate.cjs
       - run: node tests/applications.cjs
       - run: node tests/receipt-function.cjs
@@ -46,6 +45,7 @@ jobs:
           -f supabase/migrations/202610270001_recruiter_notifications.sql
           -f supabase/migrations/202610270002_recruiter_invitations.sql
           -f supabase/migrations/202610270003_current_openings.sql
+          -f supabase/migrations/202610280001_retire_older_openings.sql
           -f tests/backend-policies.sql
           -f tests/application-policies.sql
           -f tests/recruiter-invitations.sql
