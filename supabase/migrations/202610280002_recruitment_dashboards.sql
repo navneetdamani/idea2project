@@ -1,7 +1,13 @@
 begin;
 alter table public.job_applications add column review_updated_at timestamptz;
+-- Return only the caller's own application membership without a policy-to-policy cycle.
+create function public.has_applied_job(p_job text) returns boolean language sql stable security definer set search_path='' as $$
+  select exists(select 1 from public.job_applications where job_id=p_job and candidate_id=(select auth.uid()));
+$$;
+revoke all on function public.has_applied_job(text) from public,anon;
+grant execute on function public.has_applied_job(text) to authenticated;
 create policy "Read applied or recruiter job titles" on public.published_jobs for select to authenticated
-using ((select public.is_recruiter()) or exists(select 1 from public.job_applications a where a.job_id=published_jobs.id and a.candidate_id=(select auth.uid())));
+using ((select public.is_recruiter()) or public.has_applied_job(id));
 
 create table public.application_review_events (
   id bigint generated always as identity primary key,
