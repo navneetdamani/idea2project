@@ -6,12 +6,12 @@ select set_config('request.jwt.claim.sub','10000000-0000-0000-0000-000000000001'
 insert into public.candidate_profiles(id,full_name,experience_years,skills,consent_version) values(auth.uid(),'Test candidate',8,array['UKG'],'2026-10-v1');
 do $$ begin
   begin
-    insert into public.job_applications(candidate_id,job_id,availability_days,statement,consent_version) values(auth.uid(),'I2P-20261023-03',30,'Fictional relevant experience for this role.','2026-10-app-v1');
+    insert into public.job_applications(candidate_id,job_id,availability_days,statement,consent_version) values(auth.uid(),'I2P-20261027-03',30,'Fictional relevant experience for this role.','2026-10-app-v1');
     raise exception 'Application without CV allowed';
   exception when insufficient_privilege then null; end;
 end; $$;
 insert into storage.objects(bucket_id,name) values('candidate-cvs',auth.uid()::text||'/latest.pdf');
-insert into public.job_applications(candidate_id,job_id,availability_days,statement,consent_version) values(auth.uid(),'I2P-20261023-03',30,'Fictional relevant experience for this role.','2026-10-app-v1');
+insert into public.job_applications(candidate_id,job_id,availability_days,statement,consent_version) values(auth.uid(),'I2P-20261027-03',30,'Fictional relevant experience for this role.','2026-10-app-v1');
 do $$ begin
   if (select count(*) from public.job_application_receipts)<>1 then raise exception 'Receipt not queued atomically'; end if;
   if (select recruiter_state from public.job_application_receipts limit 1)<>'pending' then raise exception 'Recruiter email not queued'; end if;
@@ -32,7 +32,7 @@ do $$ begin
     raise exception 'Candidate can directly claim email queue';
   exception when insufficient_privilege then null; end;
   begin
-    insert into public.job_applications(candidate_id,job_id,availability_days,statement,consent_version) values(auth.uid(),'I2P-20261023-03',30,'Fictional relevant experience for this role.','2026-10-app-v1');
+    insert into public.job_applications(candidate_id,job_id,availability_days,statement,consent_version) values(auth.uid(),'I2P-20261027-03',30,'Fictional relevant experience for this role.','2026-10-app-v1');
     raise exception 'Duplicate application allowed';
   exception when unique_violation then null; end;
   begin
@@ -45,7 +45,7 @@ do $$ begin
   if (select count(*) from public.job_applications)<>0 then raise exception 'Cross-account application read allowed'; end if;
   if (select count(*) from public.job_application_receipts)<>0 then raise exception 'Cross-account receipt read allowed'; end if;
   begin
-    insert into public.job_applications(candidate_id,job_id,availability_days,statement,consent_version) values('10000000-0000-0000-0000-000000000001','I2P-20261023-01',30,'Fictional relevant experience for this role.','2026-10-app-v1');
+    insert into public.job_applications(candidate_id,job_id,availability_days,statement,consent_version) values('10000000-0000-0000-0000-000000000001','I2P-20261027-01',30,'Fictional relevant experience for this role.','2026-10-app-v1');
     raise exception 'Cross-account application creation allowed';
   exception when insufficient_privilege then null; end;
 end; $$;
@@ -54,12 +54,12 @@ do $$ begin
   if (select count(*) from public.job_applications)<>1 then raise exception 'Recruiter application read failed'; end if;
 end; $$;
 reset role;
-update public.published_jobs set is_open=false where id='I2P-20261023-01';
+update public.published_jobs set is_open=false where id='I2P-20261027-01';
 set role authenticated;
 select set_config('request.jwt.claim.sub','10000000-0000-0000-0000-000000000001',true);
 do $$ begin
   begin
-    insert into public.job_applications(candidate_id,job_id,availability_days,statement,consent_version) values(auth.uid(),'I2P-20261023-01',30,'Fictional relevant experience for this role.','2026-10-app-v1');
+    insert into public.job_applications(candidate_id,job_id,availability_days,statement,consent_version) values(auth.uid(),'I2P-20261027-01',30,'Fictional relevant experience for this role.','2026-10-app-v1');
     raise exception 'Closed job application allowed';
   exception when insufficient_privilege then null; end;
 end; $$;
