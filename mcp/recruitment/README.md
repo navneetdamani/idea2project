@@ -23,6 +23,8 @@ node auth.mjs login
 
 Enter an existing approved recruiter portal email and password privately in your terminal. Password entry is hidden. The CLI does not register accounts or grant recruiter access. An account must already be authorized by the portal. MFA accounts currently fail closed and require a future MFA/browser OAuth flow. Never paste passwords, bearer tokens, session files or service-role keys into chat or MCP configuration.
 
+On this Windows Codex workstation, double-click `sign-in.cmd` to open the private sign-in terminal. It uses the bundled Node runtime when available; the vault also discovers the bundled Python runtime. Reload Codex after sign-in so the registered MCP tools are available. This is a required private user step; preparing the server does not sign a recruiter in.
+
 The session is saved outside the repository at `~/.idea2project/recruitment-mcp/session.enc`. Windows uses DPAPI encryption bound to the current OS user; on POSIX, the directory is mode 0700 and file mode 0600. The server refreshes and resaves the session on use. Run only one server process per OS user/vault to avoid cross-process refresh-token races. This is a read-only tool interface backed by an existing recruiter session, not a newly scoped database credential. Other processes running as the same OS user remain part of the local trust boundary.
 
 ```sh

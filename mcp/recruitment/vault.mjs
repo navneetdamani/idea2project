@@ -4,12 +4,15 @@ import { homedir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { existsSync } from 'node:fs';
 
 // No bearer tokens in MCP configuration, browser storage, logs or the website.
 export const sessionPath = join(homedir(), '.idea2project', 'recruitment-mcp', 'session.enc');
 export function protect(value, decrypt = false) {
   if (process.platform !== 'win32') return value;
-  return execFileSync(process.env.RECRUITMENT_PYTHON || 'python', [fileURLToPath(new URL('./dpapi.py', import.meta.url)), decrypt ? 'decrypt' : 'encrypt'], {
+  const bundledPython = join(homedir(), '.cache', 'codex-runtimes', 'codex-primary-runtime', 'dependencies', 'python', 'python.exe');
+  const python = process.env.RECRUITMENT_PYTHON || (existsSync(bundledPython) ? bundledPython : 'python');
+  return execFileSync(python, [fileURLToPath(new URL('./dpapi.py', import.meta.url)), decrypt ? 'decrypt' : 'encrypt'], {
     input: value, encoding: 'utf8', windowsHide: true, timeout: 10000,
     stdio: ['pipe', 'pipe', 'pipe']
   });
