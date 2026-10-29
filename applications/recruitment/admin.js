@@ -2,7 +2,7 @@
   'use strict';
   const $=id=>document.getElementById(id),params=new URL(location.href).searchParams;
   const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const names={submitted:'Submitted',in_review:'In review',rejected:'Rejected',closed:'Closed'};
+  const names={submitted:'Submitted',in_review:'In review',rejected:'Rejected',submitted_to_customer:'Submitted to customer',customer_rejected:'Customer rejected',closed:'Closed'};
   const checked=(result,message)=>{if(result.error)throw Error(result.error.code==='40001'?'This application changed. Refresh before updating its status.':message);return result.data;};
   const message=(text,error=false)=>{$('admin-message').textContent=text;$('admin-message').classList.toggle('error',error);};
   if(!window.CandidateCore?.configReady(window.TALENTFLOW_CONFIG)||!window.supabase){message('Recruiter sign-in is temporarily unavailable.',true);return;}
@@ -11,7 +11,7 @@
   const pageSize=50;
   function controls(){for(const id of ['admin-job','admin-filter-status','admin-search','admin-refresh','admin-save-status'])$(id).disabled=busy||!authorized;$('admin-previous').disabled=busy||!authorized||offset===0;$('admin-next').disabled=busy||!authorized||offset+pageSize>=total;}
   function clearDetail(){selected=null;$('admin-detail').hidden=true;for(const key of ['name','headline','facts','phone','skills','summary','statement','availability','reference'])$('admin-candidate-'+key).textContent='';}
-  function clear(){++listRevision;jobs=[];rows=[];offset=0;total=0;authorized=false;clearDetail();$('admin-applicants').replaceChildren();$('admin-job').replaceChildren();$('admin-jd').replaceChildren();$('admin-jobs').replaceChildren();$('admin-retired-jobs').replaceChildren();$('admin-result-count').textContent='';$('admin-page').textContent='';$('admin-identity').textContent='';for(const id of ['admin-total','admin-new','admin-reviewing','admin-rejected','admin-closed','admin-open-jobs'])$(id).textContent='0';$('admin-authorized').hidden=true;controls();}
+  function clear(){++listRevision;jobs=[];rows=[];offset=0;total=0;authorized=false;clearDetail();$('admin-applicants').replaceChildren();$('admin-job').replaceChildren();$('admin-jd').replaceChildren();$('admin-jobs').replaceChildren();$('admin-retired-jobs').replaceChildren();$('admin-result-count').textContent='';$('admin-page').textContent='';$('admin-identity').textContent='';for(const id of ['admin-total','admin-new','admin-reviewing','admin-rejected','admin-customer-submitted','admin-customer-rejected','admin-closed','admin-open-jobs'])$(id).textContent='0';$('admin-authorized').hidden=true;controls();}
   function jobView(){
     const job=jobs.find(j=>j.id===$('admin-job').value);
     $('admin-jd-section').hidden=!job;
@@ -21,13 +21,13 @@
     $('admin-jd').innerHTML='<h3>'+escape(job.title)+'</h3><p>'+escape(job.is_open?'Open for applications':'Retired from new applications')+'</p>'+(jd?'<p>'+escape(jd.summary)+'</p><p><strong>Location:</strong> '+escape(jd.location)+'</p><p><strong>Experience:</strong> '+escape(jd.experience)+'</p><p>'+jd.skills.map(s=>'<span class="skill">'+escape(s)+'</span>').join('')+'</p><p>'+escape(jd.detail)+'</p>':'<p class="muted">This is an archived role. Existing applications remain available for review.</p>')+'<p class="reference">Job reference '+escape(job.id)+'</p>';
   }
   function overview(){
-    for(const [node,field] of [['admin-total','total'],['admin-new','submitted'],['admin-reviewing','in_review'],['admin-rejected','rejected'],['admin-closed','closed']])$(node).textContent=String(jobs.reduce((sum,j)=>sum+(Number(j[field])||0),0));
+    for(const [node,field] of [['admin-total','total'],['admin-new','submitted'],['admin-reviewing','in_review'],['admin-rejected','rejected'],['admin-customer-submitted','submitted_to_customer'],['admin-customer-rejected','customer_rejected'],['admin-closed','closed']])$(node).textContent=String(jobs.reduce((sum,j)=>sum+(Number(j[field])||0),0));
     $('admin-open-jobs').textContent=String(jobs.filter(j=>j.is_open).length);
     $('admin-jobs').replaceChildren();$('admin-retired-jobs').replaceChildren();
     $('admin-retired-summary').textContent='Archived jobs ('+jobs.filter(j=>!j.is_open).length+')';
     for(const job of jobs){
       const card=document.createElement('article');card.className='job-overview-card';
-      card.innerHTML='<div class="record-heading"><h3>'+escape(job.title)+'</h3><span class="status-pill">'+(job.is_open?'Open':'Archived')+'</span></div><p class="reference">'+escape(job.id)+'</p><dl class="job-counts">'+[['Total','total'],['New','submitted'],['In review','in_review'],['Rejected','rejected'],['Closed','closed']].map(([label,key])=>'<div><dt>'+label+'</dt><dd>'+escape(Number(job[key])||0)+'</dd></div>').join('')+'</dl>';
+      card.innerHTML='<div class="record-heading"><h3>'+escape(job.title)+'</h3><span class="status-pill">'+(job.is_open?'Open':'Archived')+'</span></div><p class="reference">'+escape(job.id)+'</p><dl class="job-counts">'+[['Total','total'],['New','submitted'],['In review','in_review'],['Rejected','rejected'],['Submitted to customer','submitted_to_customer'],['Customer rejected','customer_rejected'],['Closed','closed']].map(([label,key])=>'<div><dt>'+label+'</dt><dd>'+escape(Number(job[key])||0)+'</dd></div>').join('')+'</dl>';
       const action=document.createElement('button');action.type='button';action.textContent='Review applicants';action.addEventListener('click',()=>{if(!authorized||busy)return;$('admin-job').value=job.id;$('admin-filter-status').value='';$('admin-search').value='';offset=0;void page();$('admin-inbox-heading').scrollIntoView?.({block:'start',behavior:'smooth'});});card.append(action);
       $(job.is_open?'admin-jobs':'admin-retired-jobs').append(card);
     }

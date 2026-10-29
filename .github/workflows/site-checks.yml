@@ -68,8 +68,10 @@ jobs:
           -f supabase/migrations/202610280002_recruitment_dashboards.sql
           -f supabase/migrations/202610280003_recruiter_openings.sql
           -f supabase/migrations/202610290001_recruiter_overview.sql
+          -f supabase/migrations/202610290002_customer_application_stages.sql
           -f tests/backend-policies.sql
           -f tests/application-policies.sql
           -f tests/recruiter-invitations.sql
           -f tests/dashboard-policies.sql
           -f tests/recruiter-overview.sql
+          -f tests/customer-stages.sql
