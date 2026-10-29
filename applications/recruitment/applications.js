@@ -6,8 +6,8 @@
   let user = null, revision = 0, busy = false, jobs = [];
   let dashboardInitialized=false;
   const escape=value=>String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const statusNames={submitted:'Submitted',in_review:'In review',closed:'Closed'};
-  function resetDashboard(){for(const id of ['application-total','application-reviewing','application-closed'])$(id).textContent='0';$('submission-confirmation').hidden=true;dashboardInitialized=false;}
+  const statusNames={submitted:'Submitted',in_review:'In review',closed:'Closed',rejected:'Rejected'};
+  function resetDashboard(){for(const id of ['application-total','application-reviewing','application-closed','application-rejected'])$(id).textContent='0';$('submission-confirmation').hidden=true;dashboardInitialized=false;}
   const desired = new URL(window.location.href).searchParams.get('job');
   const requestedApplication = new URL(window.location.href).searchParams.get('application');
   if (/^I2P-\d{8}-\d{2}$/.test(desired || '')) {
@@ -48,6 +48,7 @@
     $('application-total').textContent=String(data.length);
     $('application-reviewing').textContent=String(data.filter(a=>a.status==='in_review').length);
     $('application-closed').textContent=String(data.filter(a=>a.status==='closed').length);
+    $('application-rejected').textContent=String(data.filter(a=>a.status==='rejected').length);
     if(!dashboardInitialized){$('profile-editor').open=!data.length;dashboardInitialized=true;}
     for(const application of data) {
       const item=document.createElement('li');
@@ -58,7 +59,7 @@
       const relatedJob=Array.isArray(application.published_jobs)?application.published_jobs[0]:application.published_jobs;
       const title=relatedJob?.title||jobs.find(j=>j.id===application.job_id)?.title||application.job_id;
       const labels={pending:'Confirmation email queued',sending:'Sending confirmation email',sent:'Confirmation email sent',failed:'Confirmation email failed — your application is saved. Refresh to retry.'};
-      const next={submitted:'Your application is saved and awaiting recruitment review. We will contact you if there is a suitable next step.',in_review:'The recruitment team is reviewing your application. Keep your profile and latest CV current.',closed:'Review of this application has ended. You can explore other open opportunities.'};
+      const next={submitted:'Your application is saved and awaiting recruitment review. We will contact you if there is a suitable next step.',in_review:'The recruitment team is reviewing your application. Keep your profile and latest CV current.',rejected:'Your application was not selected for this role. You can explore other open opportunities.',closed:'Review of this application has ended. You can explore other open opportunities.'};
       item.innerHTML='<div class="record-heading"><div><p class="section-label">Application</p><h3>'+escape(title)+'</h3></div><span class="status-pill '+escape(application.status)+'">'+escape(statusNames[application.status]||application.status)+'</span></div><p class="muted">Submitted '+escape(new Date(application.submitted_at).toLocaleDateString())+(application.review_updated_at?' · Status updated '+escape(new Date(application.review_updated_at).toLocaleDateString()):'')+'</p><p>'+escape(next[application.status]||'Your application is saved.')+'</p><p class="receipt-line" id="receipt-'+escape(application.id)+'">'+escape(labels[receipt?.state]||labels.pending)+'</p><p class="reference">Reference <span>'+escape(application.id)+'</span></p>';
       $('my-applications').append(item);
       if(dispatch && client.functions && (!receipt || ['pending','failed','sending'].includes(receipt.state) || receipt.recruiter_state!=='sent') && data.indexOf(application)<3) {
