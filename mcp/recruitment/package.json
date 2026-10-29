@@ -1,0 +1,21 @@
+{
+  "name": "idea2project-recruitment-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.16"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "login": "node auth.mjs login",
+    "logout": "node auth.mjs logout",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "@supabase/supabase-js": "2.118.0",
+    "pdfjs-dist": "6.4.299",
+    "zod": "4.6.7"
+  }
+}
