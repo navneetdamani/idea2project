@@ -22,8 +22,8 @@ export function createServer(backend = new RecruiterBackend()) {
   });
   register('list_jobs', 'List open and archived portal jobs with application/status counts.', {}, () => backend.jobs());
   register('get_job_description', 'Read the published job description. Archived descriptions may be unavailable.', { job_id: job }, a => backend.description(a.job_id));
-  register('list_applications', 'List a page of applications for one job. Follow next_offset until null. Returns private candidate-provided data; phone numbers omitted.', {
-    job_id: job, status: z.enum(['', 'submitted', 'in_review', 'closed']).default(''),
+  register('list_applications', 'List a page of applications; omit job_id for all jobs. Follow next_offset until null. Returns private candidate-provided data; phone numbers omitted.', {
+    job_id: z.union([job,z.literal('')]).default(''), status: z.enum(['', 'submitted', 'in_review', 'closed', 'rejected']).default(''),
     search: z.string().max(120).default(''), limit: z.number().int().min(1).max(100).default(25), offset: z.number().int().min(0).max(1000000).default(0)
   }, a => backend.applicants(a));
   register('get_application', 'Read an application and candidate profile by application reference. No private contact details included.', { application_id: application }, a => backend.detail(a.application_id));

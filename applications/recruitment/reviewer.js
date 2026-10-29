@@ -26,7 +26,7 @@
       $('review-all').href='admin.html?job='+encodeURIComponent(app.job_id);
       $('review-role').textContent=job?.title||app.job_id;
       $('review-reference').textContent='Reference '+app.id+' | Submitted '+new Date(app.submitted_at).toLocaleString();
-      $('review-state').textContent='Current status: '+({submitted:'Submitted',in_review:'In review',closed:'Closed'}[app.status]||app.status);
+      $('review-state').textContent='Current status: '+({submitted:'Submitted',in_review:'In review',closed:'Closed',rejected:'Rejected'}[app.status]||app.status);
       $('review-name').textContent=profile.full_name;
       $('review-headline').textContent=[profile.headline,profile.location,profile.experience_years+' years of experience'].filter(Boolean).join(' | ');
       $('review-skills').textContent=profile.skills.join(', ');$('review-summary').textContent=profile.summary;
