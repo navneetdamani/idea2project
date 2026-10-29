@@ -1,6 +1,41 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
 {
+  "id": "I2P-20261023-03",
+  "title": "UKG WFM Senior Consultant — Technical",
+  "published": "29 Oct 2026",
+  "location": "India - office location to be confirmed; JD lists Bengaluru, Hyderabad, Pune, Chennai and Kolkata",
+  "experience": "8+ years overall; relevant experience eligibility to be confirmed",
+  "summary": "Support UKG Pro WFM and Workforce Dimensions, including technical integrations, reporting, upgrades, device management and workforce application support.",
+  "skills": [
+    "UKG Pro WFM",
+    "Workforce Dimensions",
+    "Dell Boomi certification",
+    "WIM interfaces",
+    "SQL / SSRS",
+    "Time and attendance"
+  ],
+  "detail": "Fresh recruiter request received 29 Oct. UKG technical application support, Workforce Dimensions and Dell Boomi experience are required; the JD also lists Dell Boomi certification. Cover interfaces, pay calculations, access, accruals, scheduling and reporting. The latest request specifies 8+ years overall; generic JD sections contain other ranges, so final relevant-experience eligibility will be confirmed during recruiter review. International travel for 3-6 months may be required. Degree in engineering, computer science or equivalent. Work mode and shift to be confirmed."
+},
+{
+  "id": "I2P-20261023-04",
+  "title": "UKG WFM Senior Consultant — Functional",
+  "published": "29 Oct 2026",
+  "location": "India - office location to be confirmed; JD lists Bengaluru, Hyderabad, Pune, Chennai and Kolkata",
+  "experience": "8+ years overall; relevant experience eligibility to be confirmed",
+  "summary": "Provide functional application support for UKG Pro WFM and Workforce Dimensions across timekeeping, accruals, scheduling, attendance, forecasting and reporting.",
+  "skills": [
+    "UKG Pro WFM",
+    "Workforce Dimensions",
+    "Timekeeping",
+    "Accruals",
+    "Advanced scheduling",
+    "Reporting / Analytics"
+  ],
+  "detail": "Fresh recruiter request received 29 Oct. Support pay policies, ESS, access/security, Hyperfinds, Genies, Event Manager, interfaces, application upgrades, clocks and reporting. Workforce Dimensions experience is required; ITSM experience is relevant and ITIL certification is preferred. The latest request specifies 8+ years overall; generic JD sections contain other ranges, so final relevant-experience eligibility will be confirmed during recruiter review. International travel for 3-6 months may be required. Degree in engineering, computer science or equivalent. Work mode and shift to be confirmed."
+},
+
+{
   "id": "I2P-20261028-01",
   "title": "SAP HR Time Management (CATS) Consultant",
   "published": "28 Oct 2026",
