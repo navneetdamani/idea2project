@@ -1,6 +1,23 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
 {
+  "id": "I2P-20261030-01",
+  "title": "Collibra Solution Architect",
+  "published": "30 Oct 2026",
+  "location": "Hyderabad or Bengaluru; hybrid (two days stated; cadence to be confirmed)",
+  "experience": "8-10 years; total versus relevant split to be confirmed",
+  "summary": "Design data governance solutions on Collibra, translating business requirements into platform configurations, metadata models and workflows.",
+  "skills": [
+    "Collibra",
+    "Data governance",
+    "Workflow design",
+    "Metadata models",
+    "Data quality / lineage",
+    "Solution architecture"
+  ],
+  "detail": "One opening. Hands-on Collibra administration, configuration, workflow design and role assignments; create and maintain metadata models, dashboards and configuration rationale. Work with technical stakeholders on capability-specific and cross-capability designs, including data quality, data lineage, AI and unstructured data. Experience with similar platforms such as Alation is relevant. Stated schedule: 11 a.m.-8 p.m.; time zone to be confirmed. Two internal interview rounds. Hybrid arrangement states two days; attendance cadence to be confirmed."
+},
+{
   "id": "I2P-20261023-03",
   "title": "UKG WFM Senior Consultant — Technical",
   "published": "29 Oct 2026",
