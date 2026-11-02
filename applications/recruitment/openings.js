@@ -1,6 +1,74 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
 {
+  "id": "I2P-20261102-01",
+  "title": "SAP CPI / SuccessFactors Integration Senior Consultant",
+  "published": "2 Nov 2026",
+  "location": "India - office location to be confirmed; hybrid",
+  "experience": "Latest request: 8+ years relevant SuccessFactors / Employee Central with SAP CPI; final eligibility to be confirmed",
+  "summary": "Develop and support SAP CPI integrations connecting SuccessFactors Employee Central and other HR modules with cloud and on-premises systems.",
+  "skills": [
+    "SAP CPI",
+    "SuccessFactors EC",
+    "Groovy / iFlows",
+    "OData / SFAPI",
+    "Compound Employee API",
+    "SAP BTP"
+  ],
+  "detail": "Four openings stated in the JD. Schedule: 2-11 p.m. IST. SuccessFactors integration experience and one of the listed SAP certifications in Cloud Platform Integration, Integration Developer or BTP Solution Architecture are required. Build and troubleshoot iFlows, mappings, APIs and secure connectivity using Groovy, XML/XSLT, JSON, SOAP/REST, OAuth, SAML and Cloud Connector. Provide incident support, enhancements and stakeholder communication. The latest request specifies 8+ years relevant SuccessFactors / EC experience; the attachment contains differing 10-15, 4+ and 3+ experience wording, so the final experience split must be confirmed."
+},
+{
+  "id": "I2P-20261102-02",
+  "title": "Infor WFM Technical Consultant",
+  "published": "2 Nov 2026",
+  "location": "Hyderabad, Bengaluru, Pune, Mumbai, Kolkata, Chennai or Gurugram; work mode to be confirmed",
+  "experience": "Request: 3-8 years; JD states 7+ years overall and 3+ relevant; final eligibility to be confirmed",
+  "summary": "Support and enhance Infor WFM / Workbrain applications, integrations and technical customizations for time, attendance, absence and workforce scheduling.",
+  "skills": [
+    "Infor WFM / Workbrain",
+    "Java / J2EE",
+    "Groovy",
+    "SQL",
+    "WFM integrations",
+    "Application support"
+  ],
+  "detail": "Four Consultant / Senior Consultant openings stated in the JD. Cover production incidents, root-cause analysis, bug fixes, enhancements, upgrades, device management and integration with HR and payroll systems. Support testing, technical documentation and ITSM processes. Infor certification, Cognos and cloud experience are useful additions. The current request says 3-8 years, while the JD specifies 7+ overall / 3+ relevant and includes generic 2-6-year wording; final eligibility must be confirmed. Shift entries are inconsistent and lack a time zone; confirmed roster and work arrangement will be provided during recruiter review."
+},
+{
+  "id": "I2P-20261102-03",
+  "title": "Infor GHR Technical Consultant",
+  "published": "2 Nov 2026",
+  "location": "Location and work arrangement to be confirmed",
+  "experience": "4-8 years; total versus relevant split to be confirmed",
+  "summary": "Build and support Infor CloudSuite HCM / GHR integrations, automated workflows, reporting and Landmark configurations.",
+  "skills": [
+    "Infor GHR / HCM",
+    "Infor ION",
+    "IPA / IPD",
+    "Landmark / LPL",
+    "REST / SOAP",
+    "SQL / XML / XSLT"
+  ],
+  "detail": "Design integrations with third-party and legacy systems, manage BODs and data mappings, build APIs and conversion scripts, and develop workflows using Infor Process Automation. Configure Landmark runtime, security classes, roles and actor sets; support tenant maintenance, patches, reports and Tier 2/3 issue resolution. Infor certifications, Lawson migration experience and relevant industry knowledge are useful additions. The attachment also includes WFM support content; the precise GHR versus WFM scope, shift and location must be confirmed."
+},
+{
+  "id": "I2P-20261102-04",
+  "title": "Infor WFM Functional Consultant",
+  "published": "2 Nov 2026",
+  "location": "Hyderabad, Bengaluru, Pune, Mumbai, Kolkata, Chennai or Gurugram; work mode to be confirmed",
+  "experience": "Request: 3-8 years; JD states 7+ years overall and 3+ relevant; final eligibility to be confirmed",
+  "summary": "Configure and support Infor WFM / Workbrain timekeeping, pay rules, accruals, absence and scheduling processes.",
+  "skills": [
+    "Infor WFM / Workbrain",
+    "Time and attendance",
+    "Pay rules",
+    "Accruals",
+    "Scheduling / MVS / LFSO",
+    "UAT / production support"
+  ],
+  "detail": "Four Consultant / Senior Consultant openings stated in the JD. Translate business requirements into functional designs, configure complex timekeeping rules and policies, support payroll interfaces, incidents, enhancements, testing, deployment and hypercare. Mobility / ETM knowledge and strong troubleshooting are requested. Infor certification and ITIL are preferred or useful additions. The current request says 3-8 years, while the JD specifies 7+ overall / 3+ relevant and includes generic 2-6-year wording; final eligibility must be confirmed. Shift entries are inconsistent and lack a time zone; confirmed roster and work arrangement will be provided during recruiter review."
+},
+{
   "id": "I2P-20261030-01",
   "title": "Collibra Solution Architect",
   "published": "30 Oct 2026",
