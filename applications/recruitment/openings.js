@@ -1,6 +1,40 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
 {
+  "id": "I2P-20261103-01",
+  "title": "Workfront Lead - MRM & Fusion",
+  "published": "3 Nov 2026",
+  "location": "Location, work arrangement and shift to be confirmed",
+  "experience": "3-6 years hands-on Workfront MRM for this request; final eligibility to be confirmed",
+  "summary": "Design and deliver Adobe Workfront MRM workflows and Workfront Fusion integrations, including connections with AEM DAM.",
+  "skills": [
+    "Adobe Workfront MRM",
+    "Workfront Fusion",
+    "AEM DAM",
+    "Workflows / custom forms",
+    "Reporting / dashboards",
+    "REST / SOAP"
+  ],
+  "detail": "The recruiter reconfirmed this Workfront demand is open. The detailed request specifies 3-6 years hands-on Workfront MRM, strong Fusion scenario development, solution design, testing and execution. Configure custom forms, project workflows, proofing, reports and dashboards; build integrations with other systems and AEM DAM. Familiarity with AEM Sites and Assets, REST/SOAP and OAuth, HTTP Basic or API-key authentication is requested. Relevant engineering or computer-science degree, or equivalent, is specified. The separate 8+ year Workfront lead request has different eligibility and is not combined with this listing. Final location, hours and engagement details require confirmation."
+},
+{
+  "id": "I2P-20261103-02",
+  "title": "FIS Systematics Subject Matter Expert",
+  "published": "3 Nov 2026",
+  "location": "Hyderabad, Bengaluru, Chennai or Pune; hybrid details to be confirmed",
+  "experience": "Earlier calibration specifies 5 years; current eligibility to be confirmed",
+  "summary": "Provide banking-domain expertise for FIS Systematics, with an understanding of COBOL-based processing logic and Informatica.",
+  "skills": [
+    "FIS Systematics",
+    "Banking",
+    "COBOL processing",
+    "Informatica",
+    "General ledger / lending",
+    "Data quality"
+  ],
+  "detail": "A fresh recruiter message identifies this role under a replacement requisition. The earlier calibration describes one opening, five years of experience and banking knowledge spanning savings, general ledger, mortgage, lending, CDs, IRAs and HMDA/AML regulations. It also specifies an understanding of COBOL-based processing and Informatica. Next-generation banking platforms and data-quality frameworks are useful additions. Earlier terms mention two interview rounds, two-day hybrid working and 11 a.m.-8 p.m. without a time zone; the current experience, office cadence and shift must be confirmed before relying on those terms."
+},
+{
   "id": "I2P-20261102-01",
   "title": "SAP CPI / SuccessFactors Integration Senior Consultant",
   "published": "2 Nov 2026",
