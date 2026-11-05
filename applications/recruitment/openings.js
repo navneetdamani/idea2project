@@ -1,6 +1,23 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
 {
+  "id": "I2P-20261104-01",
+  "title": "Data Modeling Engineer",
+  "published": "4 Nov 2026",
+  "location": "Location, work arrangement and shift to be confirmed",
+  "experience": "Experience requirements to be confirmed",
+  "summary": "Design conceptual, logical and physical data models for relational databases and MongoDB / NoSQL, translating business requirements into scalable data structures.",
+  "skills": [
+    "Data modeling",
+    "Conceptual / logical / physical models",
+    "RDBMS",
+    "MongoDB / NoSQL",
+    "GCP (preferred)",
+    "Python (preferred)"
+  ],
+  "detail": "Strong understanding of data modeling principles and hands-on model design for both RDBMS and MongoDB / NoSQL environments are required. Translate business needs into scalable, efficient data structures. GCP knowledge, cloud data architecture exposure and hands-on Python development are useful additions. The experience band, location, work arrangement, shift and engagement terms were not specified and require confirmation."
+},
+{
   "id": "I2P-20261103-01",
   "title": "Workfront Lead - MRM & Fusion",
   "published": "3 Nov 2026",
