@@ -1,6 +1,106 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
 {
+  "title": "SAP HANA / BTP / IBP Data Modeler",
+  "experience": "Request: 3+ relevant years; JD: 3-6 years in SAP data modeling and supply chain planning",
+  "location": "Hyderabad, Bengaluru, Chennai or Pune; hybrid (2-3 office days stated; cadence to be confirmed)",
+  "summary": "Build HANA data models, BTP integrations and SAP IBP planning models supporting demand, supply and inventory planning.",
+  "skills": [
+    "SAP HANA / HANA Cloud",
+    "SQLScript / calculation views",
+    "SAP BTP",
+    "SAP IBP",
+    "CPI-DS / SDI",
+    "OData / REST"
+  ],
+  "detail": "One contract-to-hire opening. At least one full-cycle SAP IBP implementation is required. Configure planning areas, time profiles, master data, key figures, disaggregation logic and planning operators. Develop calculation views, table functions and stored procedures; tune performance and memory. Use HANA Cloud, Integration Suite, Business Application Studio and Cloud Foundry; integrate S/4HANA or ECC data through CPI-DS / SDI and APIs. Advanced SQL, dimensional modeling, IBP Excel Add-in and supply-chain planning knowledge are required. Support analytics, data quality and versioned transports. Two virtual interview rounds. General shift; exact hours and timezone require confirmation.",
+  "id": "I2P-20261106-01",
+  "published": "6 Nov 2026"
+},
+{
+  "title": "Oracle Cloud Order Management Consultant",
+  "experience": "4+ years of relevant experience",
+  "location": "Hyderabad, Bengaluru, Chennai or Pune; hybrid (2-3 office days stated; cadence to be confirmed)",
+  "summary": "Deliver end-to-end Oracle Cloud Order-to-Cash solutions and coordinate technical changes through implementation.",
+  "skills": [
+    "Oracle Cloud OTC",
+    "Order Management",
+    "Pricing",
+    "Pick Wave Release Rules",
+    "Extensible Flexfields",
+    "Service Mappings / Algorithms"
+  ],
+  "detail": "One contract-to-hire opening. Hands-on delivery across the end-to-end Order-to-Cash cycle is required, including Orders, Extensions, Service Mappings, Algorithms, Pick Wave Release Rules, Document Sets, Pricing and EFFs. Design solutions, work with technical teams on existing objects and coordinate stakeholders through implementation. Client-facing individual contributor role. Two virtual interview rounds. General shift; exact hours and timezone require confirmation.",
+  "id": "I2P-20261106-02",
+  "published": "6 Nov 2026"
+},
+{
+  "title": "SAP Vistex Technical Consultant",
+  "experience": "4+ relevant years; detailed request specifies 4-5 years",
+  "location": "Remote; request lists Hyderabad, Bengaluru, Chennai and Pune as locations",
+  "summary": "Provide Vistex production support using SAP ABAP, troubleshooting pricing and related processes and integrations.",
+  "skills": [
+    "SAP Vistex",
+    "SAP ABAP",
+    "BAPIs / BADIs / user exits",
+    "Pricing / rebates",
+    "Accruals / settlements",
+    "SD / O2C / MM / FI"
+  ],
+  "detail": "One contract-to-hire opening. Strong ABAP and familiarity with Vistex pricing, rebates, chargebacks, billbacks, accruals and settlements are required. Troubleshoot production issues and work with Vistex BAPIs, BADIs and user exits, understanding integrations with SD, O2C, MM and FI. Vistex reporting and HANA modeling are useful additions. Client-facing individual contributor role; two virtual interview rounds. Night shift stated as 6 p.m. onwards; timezone and end time must be confirmed, along with location eligibility for remote work.",
+  "id": "I2P-20261106-03",
+  "published": "6 Nov 2026"
+},
+{
+  "title": "Oracle ADF / APEX Consultant",
+  "experience": "5-8 years of relevant experience",
+  "location": "Hyderabad, Bengaluru, Chennai or Pune; hybrid (2-3 office days stated; cadence to be confirmed)",
+  "summary": "Resolve production issues and upgrade applications and dashboards built with Oracle ADF and Oracle APEX.",
+  "skills": [
+    "Oracle ADF",
+    "Oracle APEX",
+    "Production support",
+    "Application upgrades",
+    "Dashboards",
+    "Oracle OAF (preferred)"
+  ],
+  "detail": "One contract-to-hire opening. Both Oracle ADF and Oracle APEX experience are essential. Oracle OAF is a useful addition, with willingness to learn if needed. Resolve production issues and deliver upgrades to ADF / APEX applications and dashboards. Client-facing individual contributor role; two virtual interview rounds. Source states general shift as 11:00-8:00 p.m. IST; the start-time notation requires confirmation.",
+  "id": "I2P-20261106-04",
+  "published": "6 Nov 2026"
+},
+{
+  "title": "SAP WM Consultant",
+  "experience": "6+ years of relevant experience",
+  "location": "Hyderabad, Bengaluru, Chennai or Pune; hybrid; office attendance cadence to be confirmed",
+  "summary": "Provide SAP Warehouse Management expertise with hands-on EDI and IDoc interface experience.",
+  "skills": [
+    "SAP WM",
+    "Warehouse Management",
+    "EDI",
+    "IDoc interfaces",
+    "Client-facing consulting"
+  ],
+  "detail": "Six contract-to-hire positions. Strong SAP WM expertise and hands-on EDI / IDoc interface experience are required. Client-facing individual contributor role. Two virtual interview rounds. General shift; exact hours, timezone and hybrid attendance cadence require confirmation.",
+  "id": "I2P-20261106-05",
+  "published": "6 Nov 2026"
+},
+{
+  "title": "SAP Finance ACR / DRC Tax Consultant",
+  "experience": "4-10 years of relevant experience",
+  "location": "Hyderabad, Bengaluru, Chennai or Pune; hybrid (2-3 office days stated; cadence to be confirmed)",
+  "summary": "Provide SAP Document and Reporting Compliance expertise with direct and/or indirect tax experience.",
+  "skills": [
+    "SAP DRC (mandatory)",
+    "Direct / indirect tax",
+    "SAP Finance ACR",
+    "Tax compliance",
+    "Individual contributor"
+  ],
+  "detail": "One opening. SAP DRC experience is mandatory, with relevant direct and/or indirect tax expertise; general SAP Finance experience alone does not meet the stated requirement. Individual contributor role; two virtual interview rounds. The orderboard is headed contract-to-hire, while the detailed request specifies sourcing from the contract market; the engagement model requires confirmation. General shift; exact hours and timezone must be confirmed.",
+  "id": "I2P-20261106-06",
+  "published": "6 Nov 2026"
+},
+{
   "id": "I2P-20261104-01",
   "title": "Data Modeling Engineer",
   "published": "4 Nov 2026",
