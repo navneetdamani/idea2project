@@ -1,6 +1,23 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
 {
+  "id": "I2P-20261111-01",
+  "title": "MuleSoft Developer",
+  "published": "11 Nov 2026",
+  "location": "Hyderabad, Bengaluru, Pune or Chennai; work arrangement and shift to be confirmed",
+  "experience": "Hands-on MuleSoft / Mule 4 experience required; experience band to be confirmed",
+  "summary": "Build and support REST APIs, integration flows and batch processing on MuleSoft Anypoint Platform and CloudHub 2.0.",
+  "skills": [
+    "Mule 4 / Anypoint Platform",
+    "DataWeave",
+    "RAML / OAS / REST",
+    "CloudHub 2.0",
+    "Batch / SFTP integrations",
+    "MUnit / Splunk"
+  ],
+  "detail": "Multiple openings requested; exact count and engagement terms require confirmation. Hands-on MuleSoft development, API-led connectivity, REST API security with OAuth2 / Client ID Enforcement, pagination and error responses are required. Build batch scopes, schedulers, file / SFTP ingestion, reconciliation and retry logic. Deploy and operate on CloudHub 2.0 using Runtime Manager, VPC, environments and Object Store; extend shared error-handling frameworks and monitor production health using Splunk or similar tooling. Working knowledge of Salesforce and/or Snowflake connectors and synchronization patterns is required. Write MUnit and integration tests, participate in code reviews and CI/CD, troubleshoot root causes and document solutions while working with external partners and SLAs in regulated public-sector environments. MuleSoft certification, document-generation integrations, public-sector system exposure and flat-file / EDI formats are useful additions. The source test-coverage threshold is corrupted and must be confirmed; no numeric threshold is inferred."
+},
+{
   "title": "SAP HANA / BTP / IBP Data Modeler",
   "experience": "Request: 3+ relevant years; JD: 3-6 years in SAP data modeling and supply chain planning",
   "location": "Hyderabad, Bengaluru, Chennai or Pune; hybrid (2-3 office days stated; cadence to be confirmed)",
@@ -220,23 +237,6 @@ const currentOpenings = [
   "detail": "Four Consultant / Senior Consultant openings stated in the JD. Translate business requirements into functional designs, configure complex timekeeping rules and policies, support payroll interfaces, incidents, enhancements, testing, deployment and hypercare. Mobility / ETM knowledge and strong troubleshooting are requested. Infor certification and ITIL are preferred or useful additions. The current request says 3-8 years, while the JD specifies 7+ overall / 3+ relevant and includes generic 2-6-year wording; final eligibility must be confirmed. Shift entries are inconsistent and lack a time zone; confirmed roster and work arrangement will be provided during recruiter review."
 },
 {
-  "id": "I2P-20261030-01",
-  "title": "Collibra Solution Architect",
-  "published": "30 Oct 2026",
-  "location": "Hyderabad or Bengaluru; hybrid (two days stated; cadence to be confirmed)",
-  "experience": "8-10 years; total versus relevant split to be confirmed",
-  "summary": "Design data governance solutions on Collibra, translating business requirements into platform configurations, metadata models and workflows.",
-  "skills": [
-    "Collibra",
-    "Data governance",
-    "Workflow design",
-    "Metadata models",
-    "Data quality / lineage",
-    "Solution architecture"
-  ],
-  "detail": "One opening. Hands-on Collibra administration, configuration, workflow design and role assignments; create and maintain metadata models, dashboards and configuration rationale. Work with technical stakeholders on capability-specific and cross-capability designs, including data quality, data lineage, AI and unstructured data. Experience with similar platforms such as Alation is relevant. Stated schedule: 11 a.m.-8 p.m.; time zone to be confirmed. Two internal interview rounds. Hybrid arrangement states two days; attendance cadence to be confirmed."
-},
-{
   "id": "I2P-20261023-03",
   "title": "UKG WFM Senior Consultant — Technical",
   "published": "29 Oct 2026",
@@ -252,23 +252,6 @@ const currentOpenings = [
     "Time and attendance"
   ],
   "detail": "Fresh recruiter request received 29 Oct. UKG technical application support, Workforce Dimensions and Dell Boomi experience are required; the JD also lists Dell Boomi certification. Cover interfaces, pay calculations, access, accruals, scheduling and reporting. The latest request specifies 8+ years overall; generic JD sections contain other ranges, so final relevant-experience eligibility will be confirmed during recruiter review. International travel for 3-6 months may be required. Degree in engineering, computer science or equivalent. Work mode and shift to be confirmed."
-},
-{
-  "id": "I2P-20261023-04",
-  "title": "UKG WFM Senior Consultant — Functional",
-  "published": "29 Oct 2026",
-  "location": "India - office location to be confirmed; JD lists Bengaluru, Hyderabad, Pune, Chennai and Kolkata",
-  "experience": "8+ years overall; relevant experience eligibility to be confirmed",
-  "summary": "Provide functional application support for UKG Pro WFM and Workforce Dimensions across timekeeping, accruals, scheduling, attendance, forecasting and reporting.",
-  "skills": [
-    "UKG Pro WFM",
-    "Workforce Dimensions",
-    "Timekeeping",
-    "Accruals",
-    "Advanced scheduling",
-    "Reporting / Analytics"
-  ],
-  "detail": "Fresh recruiter request received 29 Oct. Support pay policies, ESS, access/security, Hyperfinds, Genies, Event Manager, interfaces, application upgrades, clocks and reporting. Workforce Dimensions experience is required; ITSM experience is relevant and ITIL certification is preferred. The latest request specifies 8+ years overall; generic JD sections contain other ranges, so final relevant-experience eligibility will be confirmed during recruiter review. International travel for 3-6 months may be required. Degree in engineering, computer science or equivalent. Work mode and shift to be confirmed."
 },
 
 {
