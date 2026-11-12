@@ -1,6 +1,90 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
 {
+  "title": "Boomi Integration Consultant - EDI",
+  "experience": "5-10 years; total versus relevant split to be confirmed",
+  "location": "Hyderabad, Bengaluru or Pune; two office days stated, cadence to be confirmed",
+  "summary": "Develop and troubleshoot Boomi integration processes, connectors and REST APIs, with strong EDI experience.",
+  "skills": [
+    "Boomi",
+    "EDI",
+    "REST / SOAP / HTTP",
+    "Oracle / database connectors",
+    "OAuth 2.0",
+    "Azure DevOps / CI/CD"
+  ],
+  "detail": "One opening. Integration expertise, process development, troubleshooting and strong EDI experience are required. Configure and troubleshoot Oracle, REST, SOAP, HTTP and database connectors; integrate ERP systems and apply OAuth 2.0 client credentials / token flows. Azure DevOps and CI/CD experience is requested. Unix, shell scripting and DSeries configuration / troubleshooting are secondary skills. Rotational shifts depending on business needs; a 2-11 p.m. IST shift is stated. Two internal interview rounds, with possible client screening. Pre-employment screening requirements and final engagement terms will be coordinated by the recruitment team.",
+  "id": "I2P-20261112-01",
+  "published": "12 Nov 2026"
+},
+{
+  "title": "BizTalk EDI Developer",
+  "experience": "Request: 8-10 years; JD: 6-8 years relevant integration development; final eligibility to be confirmed",
+  "location": "Hyderabad or Bengaluru; hybrid (two days stated, cadence to be confirmed)",
+  "summary": "Analyze and support Microsoft BizTalk EDI integrations and guide modernization and migration to MuleSoft.",
+  "skills": [
+    "Microsoft BizTalk / ESB / BAM",
+    "EDI / X12 / EDIFACT",
+    ".NET / C#",
+    "SQL Server",
+    "XML / XSD / XSLT",
+    "Integration modernization"
+  ],
+  "detail": "One opening. Hands-on development and support of BizTalk Server, ESB and BAM are required, including schemas, maps, pipelines, ports, adapters, orchestrations and trading-partner configuration. Develop or maintain .NET / C# components, query and troubleshoot SQL Server and work with XML, XSD, XSLT and EDI formats. Trace transformations, validations, routing, errors and dependencies end to end. Document interface inventories and migration risks, provide knowledge transfer to MuleSoft developers and compare designs and test outputs against existing behavior. Modernization / migration experience and strong documentation and communication are required. Two virtual internal interview rounds. Stated shift: 2-11 p.m.; timezone requires confirmation. Experience wording differs between the request and JD.",
+  "id": "I2P-20261112-02",
+  "published": "12 Nov 2026"
+},
+{
+  "title": "JD Edwards P2P / Inventory Functional Consultant",
+  "experience": "Request: 4-8 relevant years; detailed description says approximately 8 years; final eligibility to be confirmed",
+  "location": "Hyderabad, Bengaluru, Pune or Chennai; hybrid (2-3 office days stated, cadence to be confirmed)",
+  "summary": "Provide senior JD Edwards functional consulting across Procure-to-Pay and Inventory, coordinating cross-functional process requirements.",
+  "skills": [
+    "JD Edwards",
+    "Procure to Pay",
+    "Inventory",
+    "O2C / OTC",
+    "Functional consulting"
+  ],
+  "detail": "Two positions. Client-facing individual contributor roles. The detailed request describes experience across Finance, P2P, O2C / OTC, Manufacturing and Inventory; for Inventory roles, additional O2C or P2P expertise may be considered because of cross-functional scope. The exact module mix and final experience eligibility require recruiter confirmation. Stated shift: 11 a.m.-8 p.m. IST. Two virtual internal interview rounds. Engagement terms require confirmation.",
+  "id": "I2P-20261112-03",
+  "published": "12 Nov 2026"
+},
+{
+  "title": "Oracle Sales Performance Management Functional SME",
+  "experience": "5+ years of relevant experience",
+  "location": "Hyderabad preferred; Bengaluru, Chennai or Pune also listed; hybrid (2-3 office days stated, cadence to be confirmed)",
+  "summary": "Provide L2/L3 functional support and enhancements for Oracle SPM / CX Incentive Compensation.",
+  "skills": [
+    "Oracle SPM",
+    "CX Incentive Compensation",
+    "Compensation plans / crediting",
+    "Earnings / performance measures",
+    "L2 / L3 support",
+    "SQL (preferred)"
+  ],
+  "detail": "One contract-to-hire opening. Strong functional expertise in compensation plans, crediting rules, earnings calculations, performance measures, participant imports and role-based access is required. Resolve incidents, perform root-cause analysis and support maintenance, enhancements, patches and regression tests. Client-facing individual contributor role requiring strong communication. Basic SQL for reporting and troubleshooting is preferred; immediate availability is preferred. Stated shift: 2-11 p.m. IST. The latest calibration specifies one technical interview and a client round if needed; earlier wording listed both rounds, so final process requires confirmation.",
+  "id": "I2P-20261112-04",
+  "published": "12 Nov 2026"
+},
+{
+  "title": "Oracle Cloud Receivables & Credit Management Functional Consultant",
+  "experience": "8-9 years Oracle ERP Finance; at least 3-4 years Oracle Fusion Cloud Receivables",
+  "location": "Location, work arrangement and shift to be confirmed",
+  "summary": "Deliver Oracle Fusion Receivables and Credit Management from requirements and configuration through migration, testing, go-live and support.",
+  "skills": [
+    "Oracle Fusion Receivables",
+    "Oracle Credit Management",
+    "Collections / dunning",
+    "FBDI migration",
+    "AR / GL / SLA",
+    "SIT / UAT"
+  ],
+  "detail": "Hands-on Oracle Credit Management in at least one full-cycle Cloud implementation and at least 2-3 end-to-end Oracle Cloud ERP implementations are required. Configure AutoInvoice, receipts, Lockbox, AutoCash, transaction sources / types, receivables activities and accounting rules; configure credit policies, scoring models, limits, reviews and order-to-cash credit holds. Support collections, dunning, custom functional specifications, FBDI mapping / loads / reconciliation, SIT / UAT, cutover and hypercare. Strong AR-GL accounting and Subledger Accounting knowledge, analytical troubleshooting, documentation and communication with distributed UK / European stakeholders are required. Cloud Financials / Receivables certification, quarterly-release regression testing, defect tools and multi-country experience are useful additions. Location, work mode, shift, engagement terms and position count were not specified and require confirmation.",
+  "id": "I2P-20261112-05",
+  "published": "12 Nov 2026"
+},
+{
   "id": "I2P-20261111-01",
   "title": "MuleSoft Developer",
   "published": "11 Nov 2026",
