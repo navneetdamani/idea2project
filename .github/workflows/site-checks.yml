@@ -29,6 +29,7 @@ jobs:
         with:
           node-version: '22'
       - run: node tests/openings.cjs
+      - run: node tests/daily-practice.cjs
       - run: node tests/candidate.cjs
       - run: node tests/applications.cjs
       - run: node tests/receipt-function.cjs
