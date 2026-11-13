@@ -1,6 +1,41 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
 {
+  "id": "I2P-20261113-01",
+  "title": "Network Technical Project Lead",
+  "published": "13 Nov 2026",
+  "experience": "5-8 years; total versus relevant split to be confirmed",
+  "location": "Hyderabad or Bengaluru preferred; Pune and Chennai also listed; hybrid",
+  "summary": "Lead cross-team infrastructure and network projects, coordinating scope, resources, schedules, dependencies and delivery.",
+  "skills": [
+    "Infrastructure project delivery",
+    "Routing / switching / wireless",
+    "Firewall implementation / migration",
+    "Palo Alto / Fortinet / Cisco / Juniper",
+    "ITSM tools",
+    "Client communication"
+  ],
+  "detail": "Three team-lead openings. Demonstrable infrastructure project delivery is required: define scope, coordinate resources, track schedules and dependencies, resolve blockers and communicate progress. Managing engineers, incidents, shifts or SLAs alone is insufficient for the stated project-delivery scope. The request describes routing / switching / wireless as primary with firewall security secondary, and an alternative security-led implementation / migration emphasis; the exact assignment must be confirmed. Mentor engineers, communicate major-incident impact/status/next steps, prepare weekly data and lead client calls, improve monitoring and review configurations for network stability. Any ITSM tool is mandatory; ServiceNow or Jira is preferred. Strong communication is mandatory. Vendor preference is stated in the order Palo Alto, Fortinet, Cisco, Juniper. One internal and one client interview, both virtual. Night shift is stated with possible rotation, but final hours, timezone and roster remain unconfirmed. Hybrid office cadence and engagement terms require confirmation."
+},
+{
+  "id": "I2P-20261113-02",
+  "title": "Java Developer - Spring Boot & REST APIs",
+  "published": "13 Nov 2026",
+  "experience": "5-10 years; total versus relevant split to be confirmed",
+  "location": "Hyderabad or Bengaluru; two office days stated, cadence to be confirmed",
+  "summary": "Develop REST APIs using Java 17 or 21, Spring Boot and Spring Security, with hands-on SQL and test-driven development.",
+  "skills": [
+    "Java 17 / 21",
+    "Spring Boot",
+    "REST API development",
+    "Spring Security",
+    "SQL",
+    "Test-driven development",
+    "Azure / cloud"
+  ],
+  "detail": "Two openings. Hands-on Java 17 or 21, Spring Boot REST API development, Spring Security and SQL query development are required. Test-driven development with any testing framework is acceptable. Azure or another cloud framework is requested; Python is a secondary skill. One internal interview followed by a client round. Stated schedule is 11-8 p.m.; start-time interpretation and timezone require confirmation. Two office days are stated without cadence. Final engagement terms require confirmation. The current recruiter calibration message includes the detailed role requirements as an attached prior calibration note."
+},
+{
   "title": "Boomi Integration Consultant - EDI",
   "experience": "5-10 years; total versus relevant split to be confirmed",
   "location": "Hyderabad, Bengaluru or Pune; two office days stated, cadence to be confirmed",
