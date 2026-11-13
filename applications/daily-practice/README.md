@@ -1,0 +1,15 @@
+# Daily Practice
+
+Buildless, browser-local learning app at `/applications/daily-practice/`. Run `node tests/daily-practice.cjs` from the repository root. No account, backend, external AI service, or new dependency is required.
+
+SAT defaults to 365 days and 34 introductory micro-topics spanning the eight official content domains. RD defaults to 90 days and 58 micro-topics grouped according to the target completion year (2022–2026 or 2027–2031). The underlying introductory lesson pool is shared; this is a habit-building supplement, not exhaustive coverage of every item in CDR’s expanded outline, a complete SAT question bank, or an exam-readiness assessment. Original examples and questions have not undergone independent educator or dietitian review. Sources: https://satsuite.collegeboard.org/practice/content-domains and https://www.cdrnet.org/study (checked November 13, 2026).
+
+Every core topic is introduced in order over approximately the first 80% of the schedule, with review between introductions and at the end. Reviews intentionally repeat earlier lessons and questions. Completed-session count advances the schedule; missed dates never silently skip content. The dashboard distinguishes topic encounters from mastery and recomputes estimated completion. RD plans retain their selected outline; an older-outline plan slipping into 2027 displays a warning.
+
+A completed learning cycle requires a reading confirmation, all quiz answers, feedback display, and an explanation-review confirmation. Accuracy records the first submitted attempt; an incorrect answer does not prevent completion. At most one session per plan per local calendar date earns credit. The current streak includes yesterday until today is missed. Date arithmetic uses UTC ordinals and local noon construction to avoid daylight-saving length errors. The device date is trusted; there is no server enforcement or tamper resistance.
+
+Named plans are browser-local convenience profiles, not authenticated accounts. Data remains under `idea2proj.daily-practice.v1` in localStorage and is visible to anyone using the browser. Storage failures show a session-only warning. Backup export includes all plans; restore validates the schema and merges new IDs without replacing existing plans. Restoring an already-present plan keeps its existing local history. Multi-tab completion checks reconcile a changed store before writing, but localStorage does not provide atomic cross-tab transactions.
+
+Custom topics require a supplied JSON syllabus with `topics`, each containing `domain`, `title`, `lesson`, `example`, and 2–5 `questions`. Questions have `prompt`, 2–4 distinct `options`, zero-based `answer`, and `explanation`. A sample file is downloadable in setup. Custom durations must allow at least one session per topic; extra days are reviews. No exam-name-only syllabus generation is claimed. Connecting such generation requires a server-side content service, curriculum validation, and review; API keys must never be embedded in these static files.
+
+Deploy through the existing GitHub Pages publishing branch; preserve root CNAME and recruitment integrations.
