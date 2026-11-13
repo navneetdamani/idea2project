@@ -6,12 +6,12 @@ const source = fs.readFileSync(path.join(__dirname, '../applications/recruitment
 const target = {innerHTML: ''};
 const context = vm.createContext({document: {getElementById: () => target}, encodeURIComponent});
 vm.runInContext(source, context);
-assert.equal((target.innerHTML.match(/<article /g) || []).length, 28);
+assert.equal((target.innerHTML.match(/<article /g) || []).length, 30);
 assert.doesNotMatch(target.innerHTML, /mailto:|Enquire by email/);
-assert.equal((target.innerHTML.match(/href="candidate.html\?job=I2P-/g) || []).length, 28);
+assert.equal((target.innerHTML.match(/href="candidate.html\?job=I2P-/g) || []).length, 30);
 assert.doesNotMatch(target.innerHTML, /deloitte|DLTJP|INR|bill rate|zoom\.us|Process Mining/i);
 assert.doesNotMatch(target.innerHTML, /I2P-20261030-01|I2P-20261023-04/);
 vm.runInContext('currentOpenings[0].title = "<img src=x onerror=alert(1)>"; renderCurrentOpenings()', context);
 assert.doesNotMatch(target.innerHTML, /<img/);
 assert.match(target.innerHTML, /&lt;img/);
-console.log('PASS: twenty-eight current recruiter-sourced listings, portal submission links, public-copy exclusions and HTML escaping');
+console.log('PASS: thirty current recruiter-sourced listings, portal submission links, public-copy exclusions and HTML escaping');
