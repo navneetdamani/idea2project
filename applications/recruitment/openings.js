@@ -1,6 +1,23 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
 {
+  "id": "I2P-20261117-01",
+  "title": "SAP PaPM Consultant",
+  "published": "17 Nov 2026",
+  "experience": "6+ years overall; 3+ years hands-on SAP PaPM",
+  "location": "Hyderabad, Bengaluru, Chennai or Pune; hybrid",
+  "summary": "Design and implement SAP Profitability and Performance Management solutions for finance and analytics, including cost allocation and driver-based costing.",
+  "skills": [
+    "SAP PaPM",
+    "End-to-end implementation",
+    "Finance / analytics",
+    "Cost allocation",
+    "Driver-based costing",
+    "Calculation logic"
+  ],
+  "detail": "One opening. At least one end-to-end SAP PaPM implementation is required, with a finance background and experience in PaPM finance and/or analytics use cases. Build calculation logic, design PaPM modules and apply allocation rules, cost allocation, driver-based costing and performance analysis. Strong communication, client and stakeholder interaction and cross-functional coordination are required. SAP Finance, SAP HANA, SAP FPSL, insurance industry exposure and finance-related analytical models are useful additions. Two virtual interview rounds. Stated shift: noon-9 p.m. IST. Hybrid office cadence and final engagement terms require confirmation."
+},
+{
   "id": "I2P-20261113-01",
   "title": "Network Technical Project Lead",
   "published": "13 Nov 2026",
@@ -67,22 +84,6 @@ const currentOpenings = [
   ],
   "detail": "One opening. Hands-on development and support of BizTalk Server, ESB and BAM are required, including schemas, maps, pipelines, ports, adapters, orchestrations and trading-partner configuration. Develop or maintain .NET / C# components, query and troubleshoot SQL Server and work with XML, XSD, XSLT and EDI formats. Trace transformations, validations, routing, errors and dependencies end to end. Document interface inventories and migration risks, provide knowledge transfer to MuleSoft developers and compare designs and test outputs against existing behavior. Modernization / migration experience and strong documentation and communication are required. Two virtual internal interview rounds. Stated shift: 2-11 p.m.; timezone requires confirmation. Experience wording differs between the request and JD.",
   "id": "I2P-20261112-02",
-  "published": "12 Nov 2026"
-},
-{
-  "title": "JD Edwards P2P / Inventory Functional Consultant",
-  "experience": "Request: 4-8 relevant years; detailed description says approximately 8 years; final eligibility to be confirmed",
-  "location": "Hyderabad, Bengaluru, Pune or Chennai; hybrid (2-3 office days stated, cadence to be confirmed)",
-  "summary": "Provide senior JD Edwards functional consulting across Procure-to-Pay and Inventory, coordinating cross-functional process requirements.",
-  "skills": [
-    "JD Edwards",
-    "Procure to Pay",
-    "Inventory",
-    "O2C / OTC",
-    "Functional consulting"
-  ],
-  "detail": "Two positions. Client-facing individual contributor roles. The detailed request describes experience across Finance, P2P, O2C / OTC, Manufacturing and Inventory; for Inventory roles, additional O2C or P2P expertise may be considered because of cross-functional scope. The exact module mix and final experience eligibility require recruiter confirmation. Stated shift: 11 a.m.-8 p.m. IST. Two virtual internal interview rounds. Engagement terms require confirmation.",
-  "id": "I2P-20261112-03",
   "published": "12 Nov 2026"
 },
 {
