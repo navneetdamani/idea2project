@@ -53,21 +53,23 @@ const currentOpenings = [
   "detail": "Two openings. Hands-on Java 17 or 21, Spring Boot REST API development, Spring Security and SQL query development are required. Test-driven development with any testing framework is acceptable. Azure or another cloud framework is requested; Python is a secondary skill. One internal interview followed by a client round. Stated schedule is 11-8 p.m.; start-time interpretation and timezone require confirmation. Two office days are stated without cadence. Final engagement terms require confirmation. The current recruiter calibration message includes the detailed role requirements as an attached prior calibration note."
 },
 {
-  "title": "Boomi Integration Consultant - EDI",
+  "id": "I2P-20261112-01",
+  "title": "Boomi Integration Consultant",
+  "published": "17 Nov 2026",
   "experience": "5-10 years; total versus relevant split to be confirmed",
   "location": "Hyderabad, Bengaluru or Pune; two office days stated, cadence to be confirmed",
-  "summary": "Develop and troubleshoot Boomi integration processes, connectors and REST APIs, with strong EDI experience.",
+  "summary": "Develop and troubleshoot application-to-application integrations, Boomi connectors and REST APIs.",
   "skills": [
     "Boomi",
-    "EDI",
+    "Application-to-application integration",
     "REST / SOAP / HTTP",
-    "Oracle / database connectors",
+    "Oracle / database / SFTP / FTP connectors",
     "OAuth 2.0",
-    "Azure DevOps / CI/CD"
+    "Azure DevOps / CI/CD",
+    "Queueing",
+    "Encryption / decryption certificates"
   ],
-  "detail": "One opening. Integration expertise, process development, troubleshooting and strong EDI experience are required. Configure and troubleshoot Oracle, REST, SOAP, HTTP and database connectors; integrate ERP systems and apply OAuth 2.0 client credentials / token flows. Azure DevOps and CI/CD experience is requested. Unix, shell scripting and DSeries configuration / troubleshooting are secondary skills. Rotational shifts depending on business needs; a 2-11 p.m. IST shift is stated. Two internal interview rounds, with possible client screening. Pre-employment screening requirements and final engagement terms will be coordinated by the recruitment team.",
-  "id": "I2P-20261112-01",
-  "published": "12 Nov 2026"
+  "detail": "One opening. The latest calibration clarifies that this is an application-integration project. Integration expertise, process development and troubleshooting are required. Configure, develop and troubleshoot Oracle, REST, SOAP, HTTP, SFTP, FTP and database connectors. Practical OAuth 2.0 experience, REST API integration and troubleshooting, Azure DevOps / CI/CD usage, queueing mechanisms and certificate handshakes / encryption / decryption are requested. Unix, shell scripting and DSeries configuration / troubleshooting are secondary skills. Rotational shifts depending on business needs; a 2-11 p.m. IST shift is stated. Two internal interview rounds, with possible client screening. Pre-employment screening requirements and final engagement terms will be coordinated by the recruitment team."
 },
 {
   "title": "BizTalk EDI Developer",

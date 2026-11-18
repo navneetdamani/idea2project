@@ -17,3 +17,6 @@ assert.match(target.innerHTML, /&lt;img/);
 console.log('PASS: thirty current recruiter-sourced listings, portal submission links, public-copy exclusions and HTML escaping');
 
 assert.match(target.innerHTML, /I2P-20261117-01/);
+
+assert.doesNotMatch(source, /Boomi Integration Consultant - EDI|strong EDI experience/i);
+assert.match(source, /queueing mechanisms/i);
