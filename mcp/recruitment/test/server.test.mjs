@@ -32,7 +32,7 @@ function fixture(allowed = true) {
   const calls = [];
   const client = {
     auth: { setSession: async () => ({ data: { session: { access_token: 'test-only', refresh_token: 'test-only' } } }), getUser: async () => ({ data: { user: { id: 'recruiter' } } }) },
-    rpc: async (name, args) => { calls.push({ name, args }); return { data: name === 'is_recruiter' ? allowed : name === 'recruiter_job_summary' ? [{ id: 'I2P-20261028-01' }] : { total: 2, items: [{ id: 'example', profile: { full_name: 'Fictional QA', phone: 'omit' } }] } }; },
+    rpc: async (name, args) => { calls.push({ name, args }); return { data: name === 'is_recruiter' ? allowed : name === 'recruiter_job_summary' ? [{ id: 'I2P-20261028-01' }, { id: 'I2P-20261117-01' }] : { total: 2, items: [{ id: 'example', profile: { full_name: 'Fictional QA', phone: 'omit' } }] } }; },
     from: () => { throw new Error('must not read applications before authorization'); },
     storage: { from: () => { throw new Error('must not read CV before authorization'); } }
   };
@@ -58,8 +58,9 @@ test('pagination preserves total and omits contact details; rechecks recruiter o
   await backend.jobs(); assert.equal(calls.filter(c => c.name === 'is_recruiter').length, 2);
 });
 test('published JD reads the trusted portal summaries and handles unknown roles', async () => {
-  const { backend } = fixture(); const r = await backend.description('I2P-20261028-01');
-  assert.match(r.description.title, /CATS/);
+  const { backend } = fixture(); const r = await backend.description('I2P-20261117-01');
+  assert.match(r.description.title, /PaPM/);
+  assert.equal((await backend.description('I2P-20261028-01')).description, null);
   await assert.rejects(backend.description('I2P-19990101-01'), /Job not found/);
 });
 test('session protection round-trips without evaluating its content', t => {
