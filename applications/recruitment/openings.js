@@ -1,6 +1,23 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
 {
+  "id": "I2P-20261117-01",
+  "title": "SAP PaPM Consultant",
+  "published": "17 Nov 2026",
+  "experience": "6+ years overall; 3+ years hands-on SAP PaPM",
+  "location": "Hyderabad, Bengaluru, Chennai or Pune; hybrid",
+  "summary": "Design and implement SAP Profitability and Performance Management solutions for finance and analytics, including cost allocation and driver-based costing.",
+  "skills": [
+    "SAP PaPM",
+    "End-to-end implementation",
+    "Finance / analytics",
+    "Cost allocation",
+    "Driver-based costing",
+    "Calculation logic"
+  ],
+  "detail": "One opening. At least one end-to-end SAP PaPM implementation is required, with a finance background and experience in PaPM finance and/or analytics use cases. Build calculation logic, design PaPM modules and apply allocation rules, cost allocation, driver-based costing and performance analysis. Strong communication, client and stakeholder interaction and cross-functional coordination are required. SAP Finance, SAP HANA, SAP FPSL, insurance industry exposure and finance-related analytical models are useful additions. Two virtual interview rounds. Stated shift: noon-9 p.m. IST. Hybrid office cadence and final engagement terms require confirmation."
+},
+{
   "id": "I2P-20261113-01",
   "title": "Network Technical Project Lead",
   "published": "13 Nov 2026",
@@ -36,21 +53,23 @@ const currentOpenings = [
   "detail": "Two openings. Hands-on Java 17 or 21, Spring Boot REST API development, Spring Security and SQL query development are required. Test-driven development with any testing framework is acceptable. Azure or another cloud framework is requested; Python is a secondary skill. One internal interview followed by a client round. Stated schedule is 11-8 p.m.; start-time interpretation and timezone require confirmation. Two office days are stated without cadence. Final engagement terms require confirmation. The current recruiter calibration message includes the detailed role requirements as an attached prior calibration note."
 },
 {
-  "title": "Boomi Integration Consultant - EDI",
+  "id": "I2P-20261112-01",
+  "title": "Boomi Integration Consultant",
+  "published": "17 Nov 2026",
   "experience": "5-10 years; total versus relevant split to be confirmed",
   "location": "Hyderabad, Bengaluru or Pune; two office days stated, cadence to be confirmed",
-  "summary": "Develop and troubleshoot Boomi integration processes, connectors and REST APIs, with strong EDI experience.",
+  "summary": "Develop and troubleshoot application-to-application integrations, Boomi connectors and REST APIs.",
   "skills": [
     "Boomi",
-    "EDI",
+    "Application-to-application integration",
     "REST / SOAP / HTTP",
-    "Oracle / database connectors",
+    "Oracle / database / SFTP / FTP connectors",
     "OAuth 2.0",
-    "Azure DevOps / CI/CD"
+    "Azure DevOps / CI/CD",
+    "Queueing",
+    "Encryption / decryption certificates"
   ],
-  "detail": "One opening. Integration expertise, process development, troubleshooting and strong EDI experience are required. Configure and troubleshoot Oracle, REST, SOAP, HTTP and database connectors; integrate ERP systems and apply OAuth 2.0 client credentials / token flows. Azure DevOps and CI/CD experience is requested. Unix, shell scripting and DSeries configuration / troubleshooting are secondary skills. Rotational shifts depending on business needs; a 2-11 p.m. IST shift is stated. Two internal interview rounds, with possible client screening. Pre-employment screening requirements and final engagement terms will be coordinated by the recruitment team.",
-  "id": "I2P-20261112-01",
-  "published": "12 Nov 2026"
+  "detail": "One opening. The latest calibration clarifies that this is an application-integration project. Integration expertise, process development and troubleshooting are required. Configure, develop and troubleshoot Oracle, REST, SOAP, HTTP, SFTP, FTP and database connectors. Practical OAuth 2.0 experience, REST API integration and troubleshooting, Azure DevOps / CI/CD usage, queueing mechanisms and certificate handshakes / encryption / decryption are requested. Unix, shell scripting and DSeries configuration / troubleshooting are secondary skills. Rotational shifts depending on business needs; a 2-11 p.m. IST shift is stated. Two internal interview rounds, with possible client screening. Pre-employment screening requirements and final engagement terms will be coordinated by the recruitment team."
 },
 {
   "title": "BizTalk EDI Developer",
@@ -67,22 +86,6 @@ const currentOpenings = [
   ],
   "detail": "One opening. Hands-on development and support of BizTalk Server, ESB and BAM are required, including schemas, maps, pipelines, ports, adapters, orchestrations and trading-partner configuration. Develop or maintain .NET / C# components, query and troubleshoot SQL Server and work with XML, XSD, XSLT and EDI formats. Trace transformations, validations, routing, errors and dependencies end to end. Document interface inventories and migration risks, provide knowledge transfer to MuleSoft developers and compare designs and test outputs against existing behavior. Modernization / migration experience and strong documentation and communication are required. Two virtual internal interview rounds. Stated shift: 2-11 p.m.; timezone requires confirmation. Experience wording differs between the request and JD.",
   "id": "I2P-20261112-02",
-  "published": "12 Nov 2026"
-},
-{
-  "title": "JD Edwards P2P / Inventory Functional Consultant",
-  "experience": "Request: 4-8 relevant years; detailed description says approximately 8 years; final eligibility to be confirmed",
-  "location": "Hyderabad, Bengaluru, Pune or Chennai; hybrid (2-3 office days stated, cadence to be confirmed)",
-  "summary": "Provide senior JD Edwards functional consulting across Procure-to-Pay and Inventory, coordinating cross-functional process requirements.",
-  "skills": [
-    "JD Edwards",
-    "Procure to Pay",
-    "Inventory",
-    "O2C / OTC",
-    "Functional consulting"
-  ],
-  "detail": "Two positions. Client-facing individual contributor roles. The detailed request describes experience across Finance, P2P, O2C / OTC, Manufacturing and Inventory; for Inventory roles, additional O2C or P2P expertise may be considered because of cross-functional scope. The exact module mix and final experience eligibility require recruiter confirmation. Stated shift: 11 a.m.-8 p.m. IST. Two virtual internal interview rounds. Engagement terms require confirmation.",
-  "id": "I2P-20261112-03",
   "published": "12 Nov 2026"
 },
 {
