@@ -1,6 +1,40 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
 {
+  "id": "I2P-20261118-01",
+  "title": "SAP GTS Consultant - Risk, Preference & Intrastat",
+  "published": "18 Nov 2026",
+  "experience": "Relevant SAP GTS experience required; experience band to be confirmed",
+  "location": "Location and work arrangement to be confirmed",
+  "summary": "Support SAP Global Trade Services risk and preference management, Electronic Compliance Reporting and Intrastat reporting.",
+  "skills": [
+    "SAP GTS",
+    "Preference / FTA processing",
+    "Preferential origin / LTSDs",
+    "Restitution handling",
+    "Letters of credit",
+    "ECR / Intrastat"
+  ],
+  "detail": "Urgent contract-to-hire requirement. The latest request specifically emphasizes Risk / Preference Management and Intrastat reporting: free-trade agreements, product preferential origin and long-term supplier declarations; export refunds / agricultural restitution claims; letters of credit for international sales and purchases; EU goods-movement Intrastat declarations and electronic statutory trade / tax reporting. Final experience eligibility, location, work mode, shift, position count and interview process were not supplied and require confirmation. Screening and final submission requirements will be coordinated by the recruitment team."
+},
+{
+  "id": "I2P-20261118-02",
+  "title": "SAP ECC Benefits Senior Consultant",
+  "published": "18 Nov 2026",
+  "experience": "7+ years SAP HCM, including 5+ years SAP ECC Benefits",
+  "location": "Hyderabad, Bengaluru, Pune, Mumbai, Kolkata, Chennai or Gurugram; hybrid",
+  "summary": "Lead SAP ECC Benefits requirements, configuration, integration and implementation through testing, cutover and hypercare.",
+  "skills": [
+    "SAP ECC Benefits",
+    "Benefits Administration",
+    "Payroll / PA / OM integration",
+    "LSMW / BDC",
+    "Functional specifications",
+    "Full-lifecycle implementations"
+  ],
+  "detail": "One Senior Consultant opening. At least 2-3 full-lifecycle SAP ECC HCM implementations and strong Benefits configuration are required. Configure health, insurance, savings, flexible-spending and stock-purchase plans; eligibility, costs, contributions, adjustment reasons, enrolment and life events. Integrate with Payroll, Personnel Administration, Organizational Management and Time Management. Support migration mapping / cleansing / validation using LSMW, BDC or similar tools, external carrier interfaces, functional specifications with ABAP teams, unit / integration / UAT, cutover and hypercare. Strong stakeholder communication and a bachelor's degree in HR, Information Systems, Business or a related field are requested. SAP HCM certification, country-specific benefits, SuccessFactors / S/4HANA HCM / cloud migration, ABAP debugging and HR reporting are preferred additions. Stated shift: 11 a.m.-8 p.m.; timezone, hybrid office cadence, interview process and engagement terms require confirmation."
+},
+{
   "id": "I2P-20261117-01",
   "title": "SAP PaPM Consultant",
   "published": "17 Nov 2026",
