@@ -272,23 +272,6 @@ const currentOpenings = [
     "detail": "One opening. SAP DRC experience is mandatory, with relevant direct and/or indirect tax expertise; general SAP Finance experience alone does not meet the stated requirement. Individual contributor role; two virtual interview rounds. The orderboard is headed contract-to-hire, while the detailed request specifies sourcing from the contract market; the engagement model requires confirmation. General shift; exact hours and timezone must be confirmed.",
     "id": "I2P-20261106-06",
     "published": "6 Nov 2026"
-  },
-  {
-    "id": "I2P-20261104-01",
-    "title": "Data Modeling Engineer",
-    "published": "4 Nov 2026",
-    "location": "Location, work arrangement and shift to be confirmed",
-    "experience": "Experience requirements to be confirmed",
-    "summary": "Design conceptual, logical and physical data models for relational databases and MongoDB / NoSQL, translating business requirements into scalable data structures.",
-    "skills": [
-      "Data modeling",
-      "Conceptual / logical / physical models",
-      "RDBMS",
-      "MongoDB / NoSQL",
-      "GCP (preferred)",
-      "Python (preferred)"
-    ],
-    "detail": "Strong understanding of data modeling principles and hands-on model design for both RDBMS and MongoDB / NoSQL environments are required. Translate business needs into scalable, efficient data structures. GCP knowledge, cloud data architecture exposure and hands-on Python development are useful additions. The experience band, location, work arrangement, shift and engagement terms were not specified and require confirmation."
   }
 ]
 
