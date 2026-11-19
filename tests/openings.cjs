@@ -6,15 +6,15 @@ const source = fs.readFileSync(path.join(__dirname, '../applications/recruitment
 const target = {innerHTML: ''};
 const context = vm.createContext({document: {getElementById: () => target}, encodeURIComponent});
 vm.runInContext(source, context);
-assert.equal((target.innerHTML.match(/<article /g) || []).length, 32);
+assert.equal((target.innerHTML.match(/<article /g) || []).length, 17);
 assert.doesNotMatch(target.innerHTML, /mailto:|Enquire by email/);
-assert.equal((target.innerHTML.match(/href="candidate.html\?job=I2P-/g) || []).length, 32);
+assert.equal((target.innerHTML.match(/href="candidate.html\?job=I2P-/g) || []).length, 17);
 assert.doesNotMatch(target.innerHTML, /deloitte|DLTJP|INR|bill rate|zoom\.us|Process Mining/i);
 assert.doesNotMatch(target.innerHTML, /I2P-20261030-01|I2P-20261023-04|I2P-20261112-03/);
 vm.runInContext('currentOpenings[0].title = "<img src=x onerror=alert(1)>"; renderCurrentOpenings()', context);
 assert.doesNotMatch(target.innerHTML, /<img/);
 assert.match(target.innerHTML, /&lt;img/);
-console.log('PASS: thirty-two current recruiter-sourced listings, portal submission links, public-copy exclusions and HTML escaping');
+console.log('PASS: seventeen current recruiter-sourced listings, portal submission links, public-copy exclusions and HTML escaping');
 
 assert.match(target.innerHTML, /I2P-20261117-01/);
 
@@ -23,3 +23,5 @@ assert.match(source, /queueing mechanisms/i);
 
 assert.match(source, /I2P-20261118-01/);
 assert.match(source, /I2P-20261118-02/);
+
+assert.doesNotMatch(source, /I2P-20261103-01|I2P-20261103-02|I2P-20261102-01|I2P-20261102-02|I2P-20261102-03|I2P-20261102-04|I2P-20261023-03|I2P-20261028-01|I2P-20261028-02|I2P-20261028-03|I2P-20261028-04|I2P-20261027-01|I2P-20261027-02|I2P-20261027-03|I2P-20261027-04/);
