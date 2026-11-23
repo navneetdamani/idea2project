@@ -52,6 +52,15 @@
     plan.scheduleVersion=2;
     return plan;
   }
+  function overdue(plan,today=dayKey()){
+    const items=[];
+    for(let index=plan.completions.length;index<plan.days;index++){
+      const scheduledDate=addDays(plan.start,index);
+      if(scheduledDate>=today)break;
+      items.push({index,scheduledDate});
+    }
+    return items;
+  }
   function validateTopics(topics) {
     if(!Array.isArray(topics)||topics.length<1||topics.length>200) throw Error('Provide 1–200 topics.');
     return topics.map((t,i)=>{
@@ -64,6 +73,6 @@
       return {title:t.title.trim(),domain:t.domain.trim(),lesson:t.lesson.trim(),example:t.example.trim(),questions};
     });
   }
-  const api={dayKey,ordinal,addDays,streak,schedule,legacySchedule,migratePlan,validateTopics};
+  const api={dayKey,ordinal,addDays,streak,schedule,legacySchedule,migratePlan,overdue,validateTopics};
   if(typeof module!=='undefined') module.exports=api; else root.PracticeEngine=api;
 })(globalThis);

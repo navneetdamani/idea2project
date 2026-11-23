@@ -81,4 +81,6 @@ const mainIdea=C.sat.topics.findIndex(t=>t.title==='Central ideas and details');
 const varied=Q.buildQuiz({topics:C.sat.topics,topic:mainIdea,seed:999});
 const families=varied.questions.filter(q=>q.family).map(q=>q.family);
 assert.equal(new Set(families).size,families.length,'one reading quiz must not repeat the same passage family with different numbers');
+assert.deepEqual(E.overdue({start:'2026-11-20',days:90,completions:[{}]},'2026-11-23'),[{index:1,scheduledDate:'2026-11-21'},{index:2,scheduledDate:'2026-11-22'}]);
+assert.deepEqual(E.overdue({start:'2026-11-23',days:365,completions:[]},'2026-11-23'),[],'today is due, not missed');
 console.log('PASS: complete SAT/RD sequences, unseen question content, answer keys, legacy migration, date boundaries, streaks, and explicit bank exhaustion');
