@@ -1,6 +1,91 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
   {
+    "id": "I2P-20261124-01",
+    "title": "SAP TRM Consultant - Commodities",
+    "published": "24 Nov 2026",
+    "experience": "Latest request: 3-6 years; detailed JD: 3-7 years; final eligibility to be confirmed",
+    "location": "Location to be confirmed; hybrid",
+    "summary": "Configure SAP S/4HANA Treasury commodity transactions, hedge accounting and reporting.",
+    "skills": [
+      "SAP TRM / S/4HANA",
+      "Commodity options / forwards / swaps",
+      "Hedge accounting",
+      "Transaction Manager",
+      "Fiori / embedded analytics",
+      "SIT / UAT"
+    ],
+    "detail": "One contract-to-hire opening. The detailed JD requests at least two full-cycle S/4HANA TRM Commodity implementations or enhancements, with experience across ECC and S/4HANA. Configure deal capture, settlement, valuation, accruals, accounting and payment processing; commodity options, forwards, swaps and offsetting transactions; hedge accounting and third-party treasury integrations. Support Business Partner controls, workflow, role-based authorizations, Fiori apps, analytics, functional specifications, testing, cutover, training and hypercare. Two interview rounds. Shift: noon-10 p.m. IST. Two to three office days are stated without a cadence; eligible cities require confirmation. Latest experience wording differs from the JD. Permanent conversion after 3-6 months may be considered; final terms will be coordinated by the recruitment team."
+  },
+  {
+    "id": "I2P-20261124-02",
+    "title": "SAP APM / In-House Banking Consultant",
+    "published": "24 Nov 2026",
+    "experience": "Latest request: 3-6 years; detailed JD: 3-7 years; final eligibility to be confirmed",
+    "location": "Location to be confirmed; hybrid",
+    "summary": "Design and configure S/4HANA Advanced Payment Management and In-House Banking, including payment factories and intercompany settlement.",
+    "skills": [
+      "SAP APM",
+      "In-House Cash / Banking",
+      "Payment routing / batching",
+      "POBO / netting / cash pooling",
+      "ISO 20022 / bank connectivity",
+      "Fiori / embedded analytics"
+    ],
+    "detail": "One contract-to-hire opening. The detailed JD requests at least two full-cycle S/4HANA APM or In-House Cash implementations or enhancements and hands-on experience across ECC and S/4HANA. Configure payment orders, routing, bank selection, batching, cut-offs, status management, exceptions, repairs and reconciliation. Configure in-house accounts, payments on behalf of others, intercompany netting, internal statements, interest, cash pooling and loans. Integrate ISO 20022, SWIFT, host-to-host or multi-bank connectivity with Bank Account Management and Bank Communication Management. Support analytics, interfaces, enhancements, testing, cutover, training and handover. Two interview rounds. Shift: noon-10 p.m. IST. Two to three office days are stated without a cadence; eligible cities require confirmation. Latest experience wording differs from the JD. Permanent conversion after 3-6 months may be considered; final terms will be coordinated by the recruitment team."
+  },
+  {
+    "id": "I2P-20261124-03",
+    "title": "SAP MBC, Payments & Electronic Bank Statement Consultant",
+    "published": "24 Nov 2026",
+    "experience": "Latest request: 3-6 years; detailed JD: 3-7 years; final eligibility to be confirmed",
+    "location": "Location to be confirmed; hybrid",
+    "summary": "Implement S/4HANA multi-bank connectivity, payment processing and electronic bank statement reconciliation.",
+    "skills": [
+      "SAP MBC / Integration Suite",
+      "Payments / DMEE",
+      "Electronic Bank Statements",
+      "BCM / Bank Account Management",
+      "ISO 20022 / SWIFT",
+      "Fiori / embedded analytics"
+    ],
+    "detail": "One contract-to-hire opening. The detailed JD requests at least two full-cycle S/4HANA implementations or enhancements covering bank connectivity, payments and bank statements, with experience across ECC and S/4HANA. Onboard banks through Integration Suite; configure payment methods, media, status reports, approvals and batching. Configure camt.052/053, MT940 and BAI2 statements, account symbols, external transaction codes, posting rules, clearing and reconciliation. Support payment and bank-detail controls, Fiori workbenches, analytics, DMEE or BAdI enhancements, bank testing, SIT / UAT, cutover, training and hypercare. Two interview rounds. Shift: noon-10 p.m. IST. Two to three office days are stated without a cadence; eligible cities require confirmation. Latest experience wording differs from the JD. Permanent conversion after 3-6 months may be considered; final terms will be coordinated by the recruitment team."
+  },
+  {
+    "id": "I2P-20261124-04",
+    "title": "SAP APM Functional Consultant - S/4HANA Upgrade",
+    "published": "24 Nov 2026",
+    "experience": "4-6 and 6-8 relevant-year bands discussed; allocation to this track to be confirmed",
+    "location": "Hyderabad, Bengaluru, Mumbai, Gurugram, Pune, Kolkata or Chennai; hybrid",
+    "summary": "Support an SAP S/4HANA 2022-to-2025 Advanced Payment Management upgrade through impact analysis and remediation.",
+    "skills": [
+      "SAP APM",
+      "S/4HANA 2022 / 2025 upgrade",
+      "Clearing / routing agreements",
+      "Service-level tools",
+      "Payment validation",
+      "Inbound / outbound payments"
+    ],
+    "detail": "One of two SAP Treasury Functional Consultant positions, with a distinct APM upgrade track. Understand upgrade impacts, identify issues and support remediation across clearing, routing agreements, service-level tools, payment validation and end-to-end inbound / outbound payment processing. Two interview rounds followed by a client interaction. The project is currently expected to run through November 2027; duration is not guaranteed. Hybrid office cadence, shift, engagement terms and the exact experience-band allocation require confirmation."
+  },
+  {
+    "id": "I2P-20261124-05",
+    "title": "SAP Treasury & Risk Management Functional Consultant - Upgrade",
+    "published": "24 Nov 2026",
+    "experience": "4-6 and 6-8 relevant-year bands discussed; allocation to this track to be confirmed",
+    "location": "Hyderabad, Bengaluru, Mumbai, Gurugram, Pune, Kolkata or Chennai; hybrid",
+    "summary": "Support an SAP Treasury upgrade, configuration and remediation across financial transactions and accounting.",
+    "skills": [
+      "SAP Treasury / TRM",
+      "Upgrade configuration / remediation",
+      "Money market / FX",
+      "Investments / derivatives",
+      "Treasury master data",
+      "Settlement / confirmation / accounting"
+    ],
+    "detail": "One of two SAP Treasury Functional Consultant positions, with a distinct Treasury and Risk Management upgrade track. Support configuration and remediation of upgrade-related changes across money market, foreign exchange, investments, derivatives, treasury master data, transaction lifecycle, validation, settlements, confirmations and accounting. Two interview rounds followed by a client interaction. The project is currently expected to run through November 2027; duration is not guaranteed. Hybrid office cadence, shift, engagement terms and the exact experience-band allocation require confirmation."
+  },
+  {
     "id": "I2P-20261118-01",
     "title": "SAP GTS Consultant - Risk, Preference & Intrastat",
     "published": "18 Nov 2026",
@@ -89,7 +174,7 @@ const currentOpenings = [
   {
     "id": "I2P-20261112-01",
     "title": "Boomi Integration Consultant",
-    "published": "17 Nov 2026",
+    "published": "12 Nov 2026",
     "experience": "5-10 years; total versus relevant split to be confirmed",
     "location": "Hyderabad, Bengaluru or Pune; two office days stated, cadence to be confirmed",
     "summary": "Develop and troubleshoot application-to-application integrations, Boomi connectors and REST APIs.",
@@ -172,131 +257,52 @@ const currentOpenings = [
       "MUnit / Splunk"
     ],
     "detail": "Multiple openings requested; exact count and engagement terms require confirmation. Hands-on MuleSoft development, API-led connectivity, REST API security with OAuth2 / Client ID Enforcement, pagination and error responses are required. Build batch scopes, schedulers, file / SFTP ingestion, reconciliation and retry logic. Deploy and operate on CloudHub 2.0 using Runtime Manager, VPC, environments and Object Store; extend shared error-handling frameworks and monitor production health using Splunk or similar tooling. Working knowledge of Salesforce and/or Snowflake connectors and synchronization patterns is required. Write MUnit and integration tests, participate in code reviews and CI/CD, troubleshoot root causes and document solutions while working with external partners and SLAs in regulated public-sector environments. MuleSoft certification, document-generation integrations, public-sector system exposure and flat-file / EDI formats are useful additions. The source test-coverage threshold is corrupted and must be confirmed; no numeric threshold is inferred."
-  },
-  {
-    "title": "SAP HANA / BTP / IBP Data Modeler",
-    "experience": "Request: 3+ relevant years; JD: 3-6 years in SAP data modeling and supply chain planning",
-    "location": "Hyderabad, Bengaluru, Chennai or Pune; hybrid (2-3 office days stated; cadence to be confirmed)",
-    "summary": "Build HANA data models, BTP integrations and SAP IBP planning models supporting demand, supply and inventory planning.",
-    "skills": [
-      "SAP HANA / HANA Cloud",
-      "SQLScript / calculation views",
-      "SAP BTP",
-      "SAP IBP",
-      "CPI-DS / SDI",
-      "OData / REST"
-    ],
-    "detail": "One contract-to-hire opening. At least one full-cycle SAP IBP implementation is required. Configure planning areas, time profiles, master data, key figures, disaggregation logic and planning operators. Develop calculation views, table functions and stored procedures; tune performance and memory. Use HANA Cloud, Integration Suite, Business Application Studio and Cloud Foundry; integrate S/4HANA or ECC data through CPI-DS / SDI and APIs. Advanced SQL, dimensional modeling, IBP Excel Add-in and supply-chain planning knowledge are required. Support analytics, data quality and versioned transports. Two virtual interview rounds. General shift; exact hours and timezone require confirmation.",
-    "id": "I2P-20261106-01",
-    "published": "6 Nov 2026"
-  },
-  {
-    "title": "Oracle Cloud Order Management Consultant",
-    "experience": "4+ years of relevant experience",
-    "location": "Hyderabad, Bengaluru, Chennai or Pune; hybrid (2-3 office days stated; cadence to be confirmed)",
-    "summary": "Deliver end-to-end Oracle Cloud Order-to-Cash solutions and coordinate technical changes through implementation.",
-    "skills": [
-      "Oracle Cloud OTC",
-      "Order Management",
-      "Pricing",
-      "Pick Wave Release Rules",
-      "Extensible Flexfields",
-      "Service Mappings / Algorithms"
-    ],
-    "detail": "One contract-to-hire opening. Hands-on delivery across the end-to-end Order-to-Cash cycle is required, including Orders, Extensions, Service Mappings, Algorithms, Pick Wave Release Rules, Document Sets, Pricing and EFFs. Design solutions, work with technical teams on existing objects and coordinate stakeholders through implementation. Client-facing individual contributor role. Two virtual interview rounds. General shift; exact hours and timezone require confirmation.",
-    "id": "I2P-20261106-02",
-    "published": "6 Nov 2026"
-  },
-  {
-    "title": "SAP Vistex Technical Consultant",
-    "experience": "4+ relevant years; detailed request specifies 4-5 years",
-    "location": "Remote; request lists Hyderabad, Bengaluru, Chennai and Pune as locations",
-    "summary": "Provide Vistex production support using SAP ABAP, troubleshooting pricing and related processes and integrations.",
-    "skills": [
-      "SAP Vistex",
-      "SAP ABAP",
-      "BAPIs / BADIs / user exits",
-      "Pricing / rebates",
-      "Accruals / settlements",
-      "SD / O2C / MM / FI"
-    ],
-    "detail": "One contract-to-hire opening. Strong ABAP and familiarity with Vistex pricing, rebates, chargebacks, billbacks, accruals and settlements are required. Troubleshoot production issues and work with Vistex BAPIs, BADIs and user exits, understanding integrations with SD, O2C, MM and FI. Vistex reporting and HANA modeling are useful additions. Client-facing individual contributor role; two virtual interview rounds. Night shift stated as 6 p.m. onwards; timezone and end time must be confirmed, along with location eligibility for remote work.",
-    "id": "I2P-20261106-03",
-    "published": "6 Nov 2026"
-  },
-  {
-    "title": "Oracle ADF / APEX Consultant",
-    "experience": "5-8 years of relevant experience",
-    "location": "Hyderabad, Bengaluru, Chennai or Pune; hybrid (2-3 office days stated; cadence to be confirmed)",
-    "summary": "Resolve production issues and upgrade applications and dashboards built with Oracle ADF and Oracle APEX.",
-    "skills": [
-      "Oracle ADF",
-      "Oracle APEX",
-      "Production support",
-      "Application upgrades",
-      "Dashboards",
-      "Oracle OAF (preferred)"
-    ],
-    "detail": "One contract-to-hire opening. Both Oracle ADF and Oracle APEX experience are essential. Oracle OAF is a useful addition, with willingness to learn if needed. Resolve production issues and deliver upgrades to ADF / APEX applications and dashboards. Client-facing individual contributor role; two virtual interview rounds. Source states general shift as 11:00-8:00 p.m. IST; the start-time notation requires confirmation.",
-    "id": "I2P-20261106-04",
-    "published": "6 Nov 2026"
-  },
-  {
-    "title": "SAP WM Consultant",
-    "experience": "6+ years of relevant experience",
-    "location": "Hyderabad, Bengaluru, Chennai or Pune; hybrid; office attendance cadence to be confirmed",
-    "summary": "Provide SAP Warehouse Management expertise with hands-on EDI and IDoc interface experience.",
-    "skills": [
-      "SAP WM",
-      "Warehouse Management",
-      "EDI",
-      "IDoc interfaces",
-      "Client-facing consulting"
-    ],
-    "detail": "Six contract-to-hire positions. Strong SAP WM expertise and hands-on EDI / IDoc interface experience are required. Client-facing individual contributor role. Two virtual interview rounds. General shift; exact hours, timezone and hybrid attendance cadence require confirmation.",
-    "id": "I2P-20261106-05",
-    "published": "6 Nov 2026"
-  },
-  {
-    "title": "SAP Finance ACR / DRC Tax Consultant",
-    "experience": "4-10 years of relevant experience",
-    "location": "Hyderabad, Bengaluru, Chennai or Pune; hybrid (2-3 office days stated; cadence to be confirmed)",
-    "summary": "Provide SAP Document and Reporting Compliance expertise with direct and/or indirect tax experience.",
-    "skills": [
-      "SAP DRC (mandatory)",
-      "Direct / indirect tax",
-      "SAP Finance ACR",
-      "Tax compliance",
-      "Individual contributor"
-    ],
-    "detail": "One opening. SAP DRC experience is mandatory, with relevant direct and/or indirect tax expertise; general SAP Finance experience alone does not meet the stated requirement. Individual contributor role; two virtual interview rounds. The orderboard is headed contract-to-hire, while the detailed request specifies sourcing from the contract market; the engagement model requires confirmation. General shift; exact hours and timezone must be confirmed.",
-    "id": "I2P-20261106-06",
-    "published": "6 Nov 2026"
-  },
-  {
-    "id": "I2P-20261104-01",
-    "title": "Data Modeling Engineer",
-    "published": "4 Nov 2026",
-    "location": "Location, work arrangement and shift to be confirmed",
-    "experience": "Experience requirements to be confirmed",
-    "summary": "Design conceptual, logical and physical data models for relational databases and MongoDB / NoSQL, translating business requirements into scalable data structures.",
-    "skills": [
-      "Data modeling",
-      "Conceptual / logical / physical models",
-      "RDBMS",
-      "MongoDB / NoSQL",
-      "GCP (preferred)",
-      "Python (preferred)"
-    ],
-    "detail": "Strong understanding of data modeling principles and hands-on model design for both RDBMS and MongoDB / NoSQL environments are required. Translate business needs into scalable, efficient data structures. GCP knowledge, cloud data architecture exposure and hands-on Python development are useful additions. The experience band, location, work arrangement, shift and engagement terms were not specified and require confirmation."
   }
-]
+];
 
-function renderCurrentOpenings() {
+const openingMonthNumbers = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+function openingPublishedDay(job) {
+  const match = /^(\d{1,2}) ([A-Za-z]{3}) (\d{4})$/.exec(job.published || '');
+  return match && Object.hasOwn(openingMonthNumbers, match[2])
+    ? Date.UTC(Number(match[3]), openingMonthNumbers[match[2]], Number(match[1])) : 0;
+}
+function compareOpenings(a, b) {
+  return openingPublishedDay(b) - openingPublishedDay(a) || a.id.localeCompare(b.id);
+}
+currentOpenings.sort(compareOpenings);
+function normalizeOpeningSearch(value) {
+  return String(value || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+function matchingOpenings(query) {
+  const terms = normalizeOpeningSearch(query).split(/\s+/).filter(Boolean);
+  return currentOpenings.filter(job => {
+    const searchable = normalizeOpeningSearch([job.title, job.location, job.experience, job.summary, job.detail, job.id, ...job.skills].join(' '));
+    return terms.every(term => searchable.includes(term));
+  });
+}
+
+
+function renderCurrentOpenings(query = document.getElementById('opening-search')?.value || '') {
+  const target = document.getElementById('current-opening-cards');
+  if (!target) return;
+  const matches = matchingOpenings(query);
+  const count = document.getElementById('opening-result-count');
+  if (count) count.textContent = matches.length + (matches.length === 1 ? ' opening' : ' openings') + ' shown of ' + currentOpenings.length + ' · Newest first';
+  const clear = document.getElementById('opening-clear');
+  if (clear) clear.disabled = !query;
   const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  document.getElementById('current-opening-cards').innerHTML = currentOpenings.map(job => {
+  target.innerHTML = matches.map(job => {
     return '<article class="card job"><span class="badge">Recruiting · ' + escape(job.published || '23 Oct 2026') + '</span><h3>' + escape(job.title) + '</h3><p class="muted">' + escape(job.location) + '</p><p>' + escape(job.summary) + '</p><p>' + job.skills.map(skill => '<span class="skill">' + escape(skill) + '</span>').join('') + '</p><p><strong>Experience:</strong> ' + escape(job.experience) + '</p><p class="tiny">' + escape(job.detail) + '</p><p class="tiny muted">Reference: ' + escape(job.id) + ' · Engagement terms to be confirmed</p><a class="button primary" href="candidate.html?job=' + encodeURIComponent(job.id) + '">Apply through portal →</a></article>';
-  }).join('');
+  }).join('') || '<div class="card opening-empty"><h3>No matching openings</h3><p>Try another title, skill or location, or clear your search to see all openings.</p></div>';
 }
 globalThis.TalentFlowOpenings=currentOpenings;
-if(document.getElementById('current-opening-cards'))renderCurrentOpenings();
+if(document.getElementById('current-opening-cards')) {
+  document.getElementById('opening-search-form')?.addEventListener('submit', event => event.preventDefault());
+  document.getElementById('opening-search')?.addEventListener('input', event => renderCurrentOpenings(event.target.value));
+  document.getElementById('opening-clear')?.addEventListener('click', () => {
+    const input = document.getElementById('opening-search');
+    if (input) { input.value = ''; input.focus(); }
+    renderCurrentOpenings('');
+  });
+  renderCurrentOpenings();
+}
