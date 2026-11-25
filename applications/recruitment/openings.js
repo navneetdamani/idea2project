@@ -186,9 +186,10 @@ const currentOpenings = [
       "OAuth 2.0",
       "Azure DevOps / CI/CD",
       "Queueing",
-      "Encryption / decryption certificates"
+      "Encryption / decryption certificates",
+      "Apigee"
     ],
-    "detail": "One opening. The latest calibration clarifies that this is an application-integration project. Integration expertise, process development and troubleshooting are required. Configure, develop and troubleshoot Oracle, REST, SOAP, HTTP, SFTP, FTP and database connectors. Practical OAuth 2.0 experience, REST API integration and troubleshooting, Azure DevOps / CI/CD usage, queueing mechanisms and certificate handshakes / encryption / decryption are requested. Unix, shell scripting and DSeries configuration / troubleshooting are secondary skills. Rotational shifts depending on business needs; a 2-11 p.m. IST shift is stated. Two internal interview rounds, with possible client screening. Pre-employment screening requirements and final engagement terms will be coordinated by the recruitment team."
+    "detail": "One opening. The latest calibration clarifies that this is an application-integration project. Integration expertise, process development and troubleshooting are required. Configure, develop and troubleshoot Oracle, REST, SOAP, HTTP, SFTP, FTP and database connectors. Practical OAuth 2.0 experience, REST API integration and troubleshooting, Azure DevOps / CI/CD usage, queueing mechanisms and certificate handshakes / encryption / decryption are requested. Unix, shell scripting and DSeries configuration / troubleshooting are secondary skills. Rotational shifts depending on business needs; a 2-11 p.m. IST shift is stated. Two internal interview rounds, with possible client screening. Pre-employment screening requirements and final engagement terms will be coordinated by the recruitment team. The latest recruiter request also calls for Apigee experience; the specific Apigee responsibilities and depth require confirmation."
   },
   {
     "title": "BizTalk EDI Developer",
