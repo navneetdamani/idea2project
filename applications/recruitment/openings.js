@@ -1,6 +1,40 @@
 // Public summaries only. Never put source emails, vendor rates or recruiter details here.
 const currentOpenings = [
   {
+    "id": "I2P-20261125-01",
+    "title": "SAP TRM Senior Consultant - FX & Hedge Management",
+    "published": "25 Nov 2026",
+    "experience": "5-8 years in latest calibration",
+    "location": "Location to be confirmed; hybrid",
+    "summary": "Configure and support SAP Treasury foreign exchange, hedge accounting, exposure management and treasury transactions.",
+    "skills": [
+      "SAP TRM",
+      "FOREX forwards / trading-platform integration",
+      "360T or similar platforms",
+      "Hedge Accounting Management",
+      "Exposure Management",
+      "Interest-rate swaps / loans / letters of credit"
+    ],
+    "detail": "One opening. The current track specifically requires hands-on FX and hedge management, with SAP FI as a secondary skill. Support FOREX forwards and integration with 360T or similar trading platforms and the communication framework; hedge accounting and exposure management; interest-rate swaps, revolvers, term loans and letters of credit. Earlier calibration ideally requests 2-3 implementations and identifies commerce / accounting knowledge as useful. Two interview rounds. Hybrid attendance is stated as 2-3 office days without a cadence; eligible cities require confirmation. Shift is listed as 2-11 without a timezone or AM/PM notation; exact hours must be confirmed. Candidates with 20-30 days' notice may be considered. Contract-to-hire conversion arrangements will be coordinated by the recruitment team."
+  },
+  {
+    "id": "I2P-20261125-02",
+    "title": "SAP Treasury Senior Consultant - TRM & In-House Cash",
+    "published": "25 Nov 2026",
+    "experience": "Latest posting: 8+ years; earlier calibration: 7+ years; final eligibility to be confirmed",
+    "location": "Hyderabad; hybrid",
+    "summary": "Provide SAP Treasury, Cash Management and In-House Cash production support, incident resolution and system maintenance.",
+    "skills": [
+      "SAP Treasury / TRM",
+      "In-House Cash",
+      "Cash Management",
+      "Production support / SLA management",
+      "Configuration / testing",
+      "Client communication"
+    ],
+    "detail": "One replacement opening. In-House Cash and TRM experience are specifically required; Cash Management is also in scope. Troubleshoot complex SAP issues, monitor daily tickets, coordinate analysis and closure with internal and external stakeholders, review SLAs and prioritize incidents by severity. Perform system configuration, testing, routine maintenance and documentation. Support standard functionality and customizations; limited rollout work may arise. Two interview rounds. Shift: noon-10 p.m. IST. Office attendance cadence and SAP version require confirmation. The latest posting title specifies 8+ years while earlier calibration said 7+ years; final eligibility must be confirmed. Candidates with 20-30 days' notice may be considered. Contract-to-hire conversion arrangements will be coordinated by the recruitment team."
+  },
+  {
     "id": "I2P-20261124-01",
     "title": "SAP TRM Consultant - Commodities",
     "published": "24 Nov 2026",
